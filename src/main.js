@@ -2,6 +2,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp, watch } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { inject } from '@vercel/analytics'
 import App from './App.vue'
 import en from './assets/i18n/en.json'
 import es from './assets/i18n/es.json'
@@ -17,6 +18,9 @@ const i18n = createI18n({
   fallbackLocale: 'es',
   messages: { zh, en, es },
 })
+
+// Inicializar Vercel Analytics
+inject()
 
 const app = createApp(App)
 const pinia = createPinia()
