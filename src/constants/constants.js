@@ -3,30 +3,37 @@ export const BUILDING_CATEGORIES = [
   { key: 'residential', label: {
     zh: '住宅',
     en: 'Residential',
+    es: 'Residencial',
   }, color: 'bg-blue-400' },
   { key: 'commercial', label: {
     zh: '商业',
     en: 'Commercial',
+    es: 'Comercial',
   }, color: 'bg-yellow-400' },
   { key: 'industrial', label: {
     zh: '工业',
     en: 'Industrial',
+    es: 'Industrial',
   }, color: 'bg-red-400' },
   { key: 'infrastructure', label: {
     zh: '基础设施',
     en: 'Infrastructure',
+    es: 'Infraestructura',
   }, color: 'bg-purple-400' },
   { key: 'environment', label: {
     zh: '环境',
     en: 'Environment',
+    es: 'Medio Ambiente',
   }, color: 'bg-green-400' },
   { key: 'social', label: {
     zh: '社会',
     en: 'Social',
+    es: 'Social',
   }, color: 'bg-pink-400' },
   { key: 'governance', label: {
     zh: '治理',
     en: 'Governance',
+    es: 'Gobierno',
   }, color: 'bg-gray-400' },
 ]
 
@@ -59,7 +66,7 @@ export const BUILDING_CATEGORIES = [
 export const BUILDING_DATA = {
   // ===================== 住宅建筑 =====================
   house: {
-    name: { zh: '住宅', en: 'Residential' },
+    name: { zh: '住宅', en: 'Residential', es: 'Residencial' },
     type: 'house',
     icon: '🏠',
     buildingType: { zh: '住宅建筑', en: 'Residential Building' },
@@ -105,7 +112,7 @@ export const BUILDING_DATA = {
   },
 
   house2: {
-    name: { zh: '民宅', en: 'House' },
+    name: { zh: '民宅', en: 'House', es: 'Casa' },
     type: 'house2',
     icon: '🏡',
     buildingType: { zh: '住宅建筑', en: 'Residential Building' },
@@ -152,7 +159,7 @@ export const BUILDING_DATA = {
 
   // ===================== 工业建筑 =====================
   factory: {
-    name: { zh: '工厂', en: 'Factory' },
+    name: { zh: '工厂', en: 'Factory', es: 'Fábrica' },
     type: 'factory',
     icon: '🏭',
     buildingType: { zh: '工业建筑', en: 'Industrial Building' },
@@ -174,7 +181,7 @@ export const BUILDING_DATA = {
   },
 
   chemistry_factory: {
-    name: { zh: '化学工厂', en: 'Chemistry Factory' },
+    name: { zh: '化学工厂', en: 'Chemistry Factory', es: 'Fábrica Química' },
     type: 'chemistry_factory',
     icon: '🧪',
     buildingType: { zh: '化学工厂', en: 'Chemistry Factory' },
@@ -220,7 +227,7 @@ export const BUILDING_DATA = {
   },
 
   nuke_factory: {
-    name: { zh: '核电站', en: 'Nuclear Power Plant' },
+    name: { zh: '核电站', en: 'Nuclear Power Plant', es: 'Planta Nuclear' },
     type: 'nuke_factory',
     icon: '☢️',
     buildingType: { zh: '核电站', en: 'Nuclear Power Plant' },
@@ -243,7 +250,7 @@ export const BUILDING_DATA = {
 
   // ===================== 商业建筑 =====================
   shop: {
-    name: { zh: '商店', en: 'Shop' },
+    name: { zh: '商店', en: 'Shop', es: 'Tienda' },
     type: 'shop',
     icon: '🏬',
     buildingType: { zh: '商业建筑', en: 'Commercial Building' },
@@ -288,7 +295,7 @@ export const BUILDING_DATA = {
   },
 
   office: {
-    name: { zh: '办公室', en: 'Office' },
+    name: { zh: '办公室', en: 'Office', es: 'Oficina' },
     type: 'office',
     icon: '🏢',
     buildingType: { zh: '办公建筑', en: 'Office Building' },
@@ -335,7 +342,7 @@ export const BUILDING_DATA = {
 
   // ===================== 环境设施 =====================
   park: {
-    name: { zh: '公园', en: 'Park' },
+    name: { zh: '公园', en: 'Park', es: 'Parque' },
     type: 'park',
     icon: '🌳',
     buildingType: { zh: '环境设施', en: 'Environmental Facility' },
@@ -378,7 +385,7 @@ export const BUILDING_DATA = {
   },
 
   garbage_station: {
-    name: { zh: '垃圾站', en: 'Garbage Station' },
+    name: { zh: '垃圾站', en: 'Garbage Station', es: 'Estación de Basura' },
     type: 'garbage_station',
     icon: '🗑️',
     buildingType: { zh: '环境设施', en: 'Environmental Facility' },
@@ -399,7 +406,7 @@ export const BUILDING_DATA = {
   },
 
   sun_power: {
-    name: { zh: '太阳能电板', en: 'Solar Panel' },
+    name: { zh: '太阳能电板', en: 'Solar Panel', es: 'Panel Solar' },
     type: 'sun_power',
     icon: '☀️',
     buildingType: { zh: '环境设施', en: 'Environmental Facility' },
@@ -421,7 +428,7 @@ export const BUILDING_DATA = {
   },
 
   water_tower: {
-    name: { zh: '水塔', en: 'Water Tower' },
+    name: { zh: '水塔', en: 'Water Tower', es: 'Torre de Agua' },
     type: 'water_tower',
     icon: '🚰',
     buildingType: { zh: '环境设施', en: 'Environmental Facility' },
@@ -442,7 +449,7 @@ export const BUILDING_DATA = {
   },
 
   wind_power: {
-    name: { zh: '风力发电塔', en: 'Wind Power' },
+    name: { zh: '风力发电塔', en: 'Wind Power', es: 'Energía Eólica' },
     type: 'wind_power',
     icon: '🌬️',
     buildingType: { zh: '环境设施', en: 'Environmental Facility' },
@@ -463,7 +470,7 @@ export const BUILDING_DATA = {
   },
 
   hero_park: {
-    name: { zh: '英雄纪念碑', en: 'Hero Monument' },
+    name: { zh: '英雄纪念碑', en: 'Hero Monument', es: 'Monumento Heroico' },
     type: 'hero_park',
     icon: '🗽',
     buildingType: { zh: '社会设施', en: 'Social Facility' },
@@ -485,7 +492,7 @@ export const BUILDING_DATA = {
 
   // ===================== 基础设施 =====================
   road: {
-    name: { zh: '道路', en: 'Road' },
+    name: { zh: '道路', en: 'Road', es: 'Carretera' },
     type: 'road',
     icon: '🛣️',
     buildingType: { zh: '道路', en: 'Road' },
@@ -507,7 +514,7 @@ export const BUILDING_DATA = {
 
   // ===================== 治理设施 =====================
   hospital: {
-    name: { zh: '医院', en: 'Hospital' },
+    name: { zh: '医院', en: 'Hospital', es: 'Hospital' },
     type: 'hospital',
     icon: '🏥',
     buildingType: { zh: '社会设施', en: 'Social Facility' },
@@ -528,7 +535,7 @@ export const BUILDING_DATA = {
   },
 
   police: {
-    name: { zh: '警察局', en: 'Police Station' },
+    name: { zh: '警察局', en: 'Police Station', es: 'Estación de Policía' },
     type: 'police',
     icon: '👮',
     buildingType: { zh: '治理设施', en: 'Governance Facility' },
@@ -549,7 +556,7 @@ export const BUILDING_DATA = {
   },
 
   fire_station: {
-    name: { zh: '消防站', en: 'Fire Station' },
+    name: { zh: '消防站', en: 'Fire Station', es: 'Estación de Bomberos' },
     type: 'fire_station',
     icon: '🚒',
     buildingType: { zh: '社会设施', en: 'Social Facility' },
@@ -574,18 +581,22 @@ export const BUILDING_MODES = [
   { key: 'select', label: {
     zh: '选择',
     en: 'Select',
+    es: 'Seleccionar',
   }, icon: '🔍' },
   { key: 'build', label: {
     zh: '建造',
     en: 'Build',
+    es: 'Construir',
   }, icon: '🏗️' },
   { key: 'relocate', label: {
     zh: '搬迁',
     en: 'Relocate',
+    es: 'Reubicar',
   }, icon: '🚧' },
   { key: 'demolish', label: {
     zh: '拆除',
     en: 'Demolish',
+    es: 'Demoler',
   }, icon: '💥' },
 ]
 
