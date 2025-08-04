@@ -136,7 +136,7 @@ export function showBuildingPlacedToast(buildingType, tile, level, gameState) {
   const tilePos = tile.name.replace('Tile-', '')
   const message = gameState.language === 'zh'
     ? `建筑 ${buildingName} 已成功放置在 ${tilePos}。`
-    : `Building ${buildingName} placed on tile ${tilePos}.`
+    : `Edificio ${buildingName} colocado en casilla ${tilePos}.`
   showToast('success', message)
 }
 
@@ -152,6 +152,6 @@ export function showBuildingRemovedToast(buildingType, tile, level, gameState) {
   const tilePos = tile.name.replace('Tile-', '')
   const message = gameState.language === 'zh'
     ? `位于 ${tilePos} 的 ${buildingName} 已被移除。`
-    : `Building ${buildingName} on tile ${tilePos} has been removed.`
+    : `Edificio ${buildingName} en casilla ${tilePos} ha sido removido.`
   showToast('error', message)
 }

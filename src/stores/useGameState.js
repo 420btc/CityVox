@@ -254,6 +254,10 @@ export const useGameState = defineStore('gameState', {
       if (this.toastQueue.length > 2) {
         this.toastQueue.shift()
       }
+      // Auto-dismiss después de 3 segundos
+      setTimeout(() => {
+        this.removeToast(id)
+      }, 3000)
     },
     setLanguage(lang) {
       this.language = lang

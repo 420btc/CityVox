@@ -50,7 +50,7 @@ function tileTooltip(x, y, tile) {
 <template>
   <div class="flex flex-col w-full h-full">
     <div class="text-center text-base sm:text-lg font-bold text-white mb-2 select-none">
-      M A P
+      M A P A
     </div>
     <div class="flex-1 w-full h-full aspect-square grid grid-cols-17 grid-rows-17 gap-[1px] bg-[#212121]  rounded-lg shadow-md overflow-hidden">
       <template v-for="(row, x) in metadata" :key="x">

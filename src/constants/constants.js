@@ -69,11 +69,11 @@ export const BUILDING_DATA = {
     name: { zh: '住宅', en: 'Residential', es: 'Residencial' },
     type: 'house',
     icon: '🏠',
-    buildingType: { zh: '住宅建筑', en: 'Residential Building' },
+    buildingType: { zh: '住宅建筑', en: 'Residential Building', es: 'Edificio Residencial' },
     category: 'residential',
     levels: {
       1: {
-        displayName: { zh: '普通住宅', en: 'Basic Residential' },
+        displayName: { zh: '普通住宅', en: 'Basic Residential', es: 'Residencial Básico' },
         cost: 300,
         maxPopulation: 30, // 36→30 (覆盖工厂20+商店10)
         powerUsage: 10,
@@ -85,7 +85,7 @@ export const BUILDING_DATA = {
         category: 'residential',
       },
       2: {
-        displayName: { zh: '高级住宅', en: 'Advanced Residential' },
+        displayName: { zh: '高级住宅', en: 'Advanced Residential', es: 'Residencial Avanzado' },
         cost: 600,
         maxPopulation: 72, // 90→72 (覆盖高级商店20+化学工厂55)
         powerUsage: 15,
@@ -97,7 +97,7 @@ export const BUILDING_DATA = {
         category: 'residential',
       },
       3: {
-        displayName: { zh: '豪华住宅', en: 'Luxury Residential' },
+        displayName: { zh: '豪华住宅', en: 'Luxury Residential', es: 'Residencial de Lujo' },
         cost: 1200,
         maxPopulation: 120, // 144→120 (覆盖购物中心40+现代化工厂80)
         powerUsage: 20,
@@ -115,11 +115,11 @@ export const BUILDING_DATA = {
     name: { zh: '民宅', en: 'House', es: 'Casa' },
     type: 'house2',
     icon: '🏡',
-    buildingType: { zh: '住宅建筑', en: 'Residential Building' },
+    buildingType: { zh: '住宅建筑', en: 'Residential Building', es: 'Edificio Residencial' },
     category: 'residential',
     levels: {
       1: {
-        displayName: { zh: '普通民宅', en: 'Basic House' },
+        displayName: { zh: '普通民宅', en: 'Basic House', es: 'Casa Básica' },
         cost: 400,
         maxPopulation: 39, // 42→39 (1.3倍覆盖率)
         powerUsage: 8,
@@ -131,7 +131,7 @@ export const BUILDING_DATA = {
         category: 'residential',
       },
       2: {
-        displayName: { zh: '高级民宅', en: 'Advanced House' },
+        displayName: { zh: '高级民宅', en: 'Advanced House', es: 'Casa Avanzada' },
         cost: 800,
         maxPopulation: 98, // 102→98 (1.3倍覆盖率)
         powerUsage: 12,
@@ -143,7 +143,7 @@ export const BUILDING_DATA = {
         category: 'residential',
       },
       3: {
-        displayName: { zh: '豪华民宅', en: 'Luxury House' },
+        displayName: { zh: '豪华民宅', en: 'Luxury House', es: 'Casa de Lujo' },
         cost: 1600,
         maxPopulation: 156, // 168→156 (1.3倍覆盖率)
         powerUsage: 18,
@@ -162,11 +162,11 @@ export const BUILDING_DATA = {
     name: { zh: '工厂', en: 'Factory', es: 'Fábrica' },
     type: 'factory',
     icon: '🏭',
-    buildingType: { zh: '工业建筑', en: 'Industrial Building' },
+    buildingType: { zh: '工业建筑', en: 'Industrial Building', es: 'Edificio Industrial' },
     category: 'industrial',
     levels: {
       1: {
-        displayName: { zh: '普通工厂', en: 'Basic Factory' },
+        displayName: { zh: '普通工厂', en: 'Basic Factory', es: 'Fábrica Básica' },
         cost: 500,
         powerUsage: 40,
         pollution: 22, // 20→22 (污染/成本=0.044)
@@ -184,11 +184,11 @@ export const BUILDING_DATA = {
     name: { zh: '化学工厂', en: 'Chemistry Factory', es: 'Fábrica Química' },
     type: 'chemistry_factory',
     icon: '🧪',
-    buildingType: { zh: '化学工厂', en: 'Chemistry Factory' },
+    buildingType: { zh: '化学工厂', en: 'Chemistry Factory', es: 'Fábrica Química' },
     category: 'industrial',
     levels: {
       1: {
-        displayName: { zh: '化学工厂', en: 'Chemistry Factory' },
+        displayName: { zh: '化学工厂', en: 'Chemistry Factory', es: 'Fábrica Química' },
         cost: 1000,
         powerUsage: 60,
         pollution: 45, // 保持45 (污染/成本=0.045)
@@ -200,7 +200,7 @@ export const BUILDING_DATA = {
         category: 'industrial',
       },
       2: {
-        displayName: { zh: '高级化学工厂', en: 'Advanced Chemistry Factory' },
+        displayName: { zh: '高级化学工厂', en: 'Advanced Chemistry Factory', es: 'Fábrica Química Avanzada' },
         cost: 1500,
         powerUsage: 80,
         pollution: 65,
@@ -212,7 +212,7 @@ export const BUILDING_DATA = {
         category: 'industrial',
       },
       3: {
-        displayName: { zh: '现代化化学工厂', en: 'Modern Chemistry Factory' },
+        displayName: { zh: '现代化化学工厂', en: 'Modern Chemistry Factory', es: 'Fábrica Química Moderna' },
         cost: 2000,
         powerUsage: 100,
         pollution: 90,
@@ -230,11 +230,11 @@ export const BUILDING_DATA = {
     name: { zh: '核电站', en: 'Nuclear Power Plant', es: 'Planta Nuclear' },
     type: 'nuke_factory',
     icon: '☢️',
-    buildingType: { zh: '核电站', en: 'Nuclear Power Plant' },
+    buildingType: { zh: '核电站', en: 'Nuclear Power Plant', es: 'Planta Nuclear' },
     category: 'industrial',
     levels: {
       1: {
-        displayName: { zh: '核电站', en: 'Nuclear Power Plant' },
+        displayName: { zh: '核电站', en: 'Nuclear Power Plant', es: 'Planta Nuclear' },
         cost: 5000,
         powerOutput: 300,
         pollution: 40,
@@ -253,11 +253,11 @@ export const BUILDING_DATA = {
     name: { zh: '商店', en: 'Shop', es: 'Tienda' },
     type: 'shop',
     icon: '🏬',
-    buildingType: { zh: '商业建筑', en: 'Commercial Building' },
+    buildingType: { zh: '商业建筑', en: 'Commercial Building', es: 'Edificio Comercial' },
     category: 'commercial',
     levels: {
       1: {
-        displayName: { zh: '普通商店', en: 'Basic Shop' },
+        displayName: { zh: '普通商店', en: 'Basic Shop', es: 'Tienda Básica' },
         cost: 400,
         powerUsage: 15,
         pollution: 6, // 5→6 (污染/成本=0.015)
@@ -268,7 +268,7 @@ export const BUILDING_DATA = {
         visible: true,
       },
       2: {
-        displayName: { zh: '高级商店', en: 'Advanced Shop' },
+        displayName: { zh: '高级商店', en: 'Advanced Shop', es: 'Tienda Avanzada' },
         cost: 800,
         powerUsage: 25,
         pollution: 8,
@@ -280,7 +280,7 @@ export const BUILDING_DATA = {
         category: 'commercial',
       },
       3: {
-        displayName: { zh: '购物中心', en: 'Shopping Center' },
+        displayName: { zh: '购物中心', en: 'Shopping Center', es: 'Centro Comercial' },
         cost: 1600,
         powerUsage: 40,
         pollution: 12,
@@ -298,11 +298,11 @@ export const BUILDING_DATA = {
     name: { zh: '办公室', en: 'Office', es: 'Oficina' },
     type: 'office',
     icon: '🏢',
-    buildingType: { zh: '办公建筑', en: 'Office Building' },
+    buildingType: { zh: '办公建筑', en: 'Office Building', es: 'Edificio de Oficinas' },
     category: 'commercial',
     levels: {
       1: {
-        displayName: { zh: '普通办公室', en: 'Basic Office' },
+        displayName: { zh: '普通办公室', en: 'Basic Office', es: 'Oficina Básica' },
         cost: 500,
         powerUsage: 30,
         pollution: 7, // 8→7 (污染/成本=0.014)
@@ -314,7 +314,7 @@ export const BUILDING_DATA = {
         category: 'commercial',
       },
       2: {
-        displayName: { zh: '高级办公室', en: 'Advanced Office' },
+        displayName: { zh: '高级办公室', en: 'Advanced Office', es: 'Oficina Avanzada' },
         cost: 1000,
         powerUsage: 45,
         pollution: 12,
@@ -326,7 +326,7 @@ export const BUILDING_DATA = {
         category: 'commercial',
       },
       3: {
-        displayName: { zh: '商务中心', en: 'Business Center' },
+        displayName: { zh: '商务中心', en: 'Business Center', es: 'Centro de Negocios' },
         cost: 2000,
         powerUsage: 65,
         pollution: 18,
@@ -345,11 +345,11 @@ export const BUILDING_DATA = {
     name: { zh: '公园', en: 'Park', es: 'Parque' },
     type: 'park',
     icon: '🌳',
-    buildingType: { zh: '环境设施', en: 'Environmental Facility' },
+    buildingType: { zh: '环境设施', en: 'Environmental Facility', es: 'Instalación Ambiental' },
     category: 'social',
     levels: {
       1: {
-        displayName: { zh: '小公园', en: 'Small Park' },
+        displayName: { zh: '小公园', en: 'Small Park', es: 'Parque Pequeño' },
         cost: 200,
         powerUsage: 5,
         pollution: -10, // -10/200=-0.05
@@ -360,7 +360,7 @@ export const BUILDING_DATA = {
         category: 'social',
       },
       2: {
-        displayName: { zh: '社区公园', en: 'Community Park' },
+        displayName: { zh: '社区公园', en: 'Community Park', es: 'Parque Comunitario' },
         cost: 400,
         powerUsage: 8,
         pollution: -20, // -20/400=-0.05
@@ -371,7 +371,7 @@ export const BUILDING_DATA = {
         category: 'social',
       },
       3: {
-        displayName: { zh: '城市公园', en: 'City Park' },
+        displayName: { zh: '城市公园', en: 'City Park', es: 'Parque de la Ciudad' },
         cost: 800,
         powerUsage: 12,
         pollution: -40, // -30→-40 (-40/800=-0.05)
@@ -388,11 +388,11 @@ export const BUILDING_DATA = {
     name: { zh: '垃圾站', en: 'Garbage Station', es: 'Estación de Basura' },
     type: 'garbage_station',
     icon: '🗑️',
-    buildingType: { zh: '环境设施', en: 'Environmental Facility' },
+    buildingType: { zh: '环境设施', en: 'Environmental Facility', es: 'Instalación Ambiental' },
     category: 'environment',
     levels: {
       1: {
-        displayName: { zh: '垃圾站', en: 'Garbage Station' },
+        displayName: { zh: '垃圾站', en: 'Garbage Station', es: 'Estación de Basura' },
         cost: 500,
         powerUsage: 20,
         pollution: -15, // -15/500=-0.03
@@ -409,11 +409,11 @@ export const BUILDING_DATA = {
     name: { zh: '太阳能电板', en: 'Solar Panel', es: 'Panel Solar' },
     type: 'sun_power',
     icon: '☀️',
-    buildingType: { zh: '环境设施', en: 'Environmental Facility' },
+    buildingType: { zh: '环境设施', en: 'Environmental Facility', es: 'Instalación Ambiental' },
     category: 'environment',
     levels: {
       1: {
-        displayName: { zh: '太阳能电板', en: 'Solar Panel' },
+        displayName: { zh: '太阳能电板', en: 'Solar Panel', es: 'Panel Solar' },
         cost: 800,
         powerOutput: 50,
         pollution: -10,
@@ -431,11 +431,11 @@ export const BUILDING_DATA = {
     name: { zh: '水塔', en: 'Water Tower', es: 'Torre de Agua' },
     type: 'water_tower',
     icon: '🚰',
-    buildingType: { zh: '环境设施', en: 'Environmental Facility' },
+    buildingType: { zh: '环境设施', en: 'Environmental Facility', es: 'Instalación Ambiental' },
     category: 'environment',
     levels: {
       1: {
-        displayName: { zh: '水塔', en: 'Water Tower' },
+        displayName: { zh: '水塔', en: 'Water Tower', es: 'Torre de Agua' },
         cost: 700,
         powerUsage: 15,
         pollution: 0,
@@ -452,11 +452,11 @@ export const BUILDING_DATA = {
     name: { zh: '风力发电塔', en: 'Wind Power', es: 'Energía Eólica' },
     type: 'wind_power',
     icon: '🌬️',
-    buildingType: { zh: '环境设施', en: 'Environmental Facility' },
+    buildingType: { zh: '环境设施', en: 'Environmental Facility', es: 'Instalación Ambiental' },
     category: 'environment',
     levels: {
       1: {
-        displayName: { zh: '风力发电塔', en: 'Wind Power' },
+        displayName: { zh: '风力发电塔', en: 'Wind Power', es: 'Energía Eólica' },
         cost: 900,
         powerOutput: 70,
         pollution: -15,
@@ -473,11 +473,11 @@ export const BUILDING_DATA = {
     name: { zh: '英雄纪念碑', en: 'Hero Monument', es: 'Monumento Heroico' },
     type: 'hero_park',
     icon: '🗽',
-    buildingType: { zh: '社会设施', en: 'Social Facility' },
+    buildingType: { zh: '社会设施', en: 'Social Facility', es: 'Instalación Social' },
     category: 'social',
     levels: {
       1: {
-        displayName: { zh: '英雄纪念碑', en: 'Hero Monument' },
+        displayName: { zh: '英雄纪念碑', en: 'Hero Monument', es: 'Monumento Heroico' },
         cost: 1200,
         powerUsage: 10,
         pollution: -5,
@@ -495,11 +495,11 @@ export const BUILDING_DATA = {
     name: { zh: '道路', en: 'Road', es: 'Carretera' },
     type: 'road',
     icon: '🛣️',
-    buildingType: { zh: '道路', en: 'Road' },
+    buildingType: { zh: '道路', en: 'Road', es: 'Carretera' },
     category: 'infrastructure',
     levels: {
       1: {
-        displayName: { zh: '道路', en: 'Road' },
+        displayName: { zh: '道路', en: 'Road', es: 'Carretera' },
         cost: 0,
         powerUsage: 0,
         pollution: 0,
@@ -517,11 +517,11 @@ export const BUILDING_DATA = {
     name: { zh: '医院', en: 'Hospital', es: 'Hospital' },
     type: 'hospital',
     icon: '🏥',
-    buildingType: { zh: '社会设施', en: 'Social Facility' },
+    buildingType: { zh: '社会设施', en: 'Social Facility', es: 'Instalación Social' },
     category: 'governance',
     levels: {
       1: {
-        displayName: { zh: '医院', en: 'Hospital' },
+        displayName: { zh: '医院', en: 'Hospital', es: 'Hospital' },
         cost: 1000,
         powerUsage: 40,
         pollution: 0,
@@ -538,11 +538,11 @@ export const BUILDING_DATA = {
     name: { zh: '警察局', en: 'Police Station', es: 'Estación de Policía' },
     type: 'police',
     icon: '👮',
-    buildingType: { zh: '治理设施', en: 'Governance Facility' },
+    buildingType: { zh: '治理设施', en: 'Governance Facility', es: 'Instalación de Gobierno' },
     category: 'governance',
     levels: {
       1: {
-        displayName: { zh: '警察局', en: 'Police Station' },
+        displayName: { zh: '警察局', en: 'Police Station', es: 'Estación de Policía' },
         cost: 1200,
         powerUsage: 30,
         pollution: 0,
@@ -559,11 +559,11 @@ export const BUILDING_DATA = {
     name: { zh: '消防站', en: 'Fire Station', es: 'Estación de Bomberos' },
     type: 'fire_station',
     icon: '🚒',
-    buildingType: { zh: '社会设施', en: 'Social Facility' },
+    buildingType: { zh: '社会设施', en: 'Social Facility', es: 'Instalación Social' },
     category: 'governance',
     levels: {
       1: {
-        displayName: { zh: '消防站', en: 'Fire Station' },
+        displayName: { zh: '消防站', en: 'Fire Station', es: 'Estación de Bomberos' },
         cost: 900,
         powerUsage: 35,
         pollution: 0,

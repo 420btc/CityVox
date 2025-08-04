@@ -42,7 +42,7 @@ export function handleBuildMode(ctx, tile) {
   const metadata = ctx.gameState.metadata
   const canBuild = canPlaceBuilding(x, y, buildingTypeToBuild, metadata)
   if (!buildingTypeToBuild || !canBuild || tile.buildingInstance) {
-    showToast('error', '无法在此处建造，请选择合规地块。')
+    showToast('error', 'No se puede construir aquí, selecciona una casilla válida.')
     return
   }
   // 通过 Pinia 修改 metadata
@@ -57,7 +57,7 @@ export function handleBuildMode(ctx, tile) {
     outputFactor: 1,
   })
   if (ctx.gameState.credits < BUILDING_DATA[buildingTypeToBuild]?.levels[buildingLevelToBuild]?.cost) {
-    showToast('error', 'Insufficient funds, unable to build.')
+    showToast('error', 'Fondos insuficientes, no se puede construir.')
     return
   }
   ctx.gameState.updateCredits(-BUILDING_DATA[buildingTypeToBuild]?.levels[buildingLevelToBuild]?.cost)
@@ -109,7 +109,7 @@ export function handleRelocateMode(ctx, tile) {
   // 步骤1: 选择要搬迁的建筑
   if (!ctx.relocateFirst) {
     if (!tile.buildingInstance) {
-      showToast('error', '请选择一个有建筑的地块进行搬迁。')
+      showToast('error', 'Selecciona una casilla con edificio para reubicar.')
       ctx._clearSelection() // 清空无效选择
       return
     }
@@ -121,11 +121,11 @@ export function handleRelocateMode(ctx, tile) {
   // 步骤2: 选择目标空地
   if (ctx.relocateFirst !== tile) {
     if (!canPlaceBuilding(tile.x, tile.y, ctx.relocateFirst.buildingInstance.type, ctx.gameState.metadata)) {
-      showToast('error', '无法在此处搬迁，请选择合规地块。')
+      showToast('error', 'No se puede reubicar aquí, selecciona una casilla válida.')
       return
     }
     if (tile.buildingInstance) {
-      showToast('error', '目标地块已被占用，无法搬迁。')
+      showToast('error', 'La casilla objetivo está ocupada, no se puede reubicar.')
       return
     }
     ctx.relocateSecond = tile
@@ -144,7 +144,6 @@ export function handleRelocateMode(ctx, tile) {
 
 /**
  * [默认模式] 逻辑 (如查看信息)
- * @param {Interactor} ctx - Interactor 实例
  * @param {object} tile - 选中的地块
  */
 export function handleDefaultMode(tile) {
@@ -171,10 +170,10 @@ export function confirmUpgrade(ctx) {
         detail: BUILDING_DATA[newBuilding.type]?.levels[newBuilding.level],
         outputFactor: BUILDING_DATA[newBuilding.type]?.levels[newBuilding.level]?.outputFactor || 1,
       })
-      showToast('success', '建筑升级成功！')
+      showToast('success', '¡Edificio mejorado exitosamente!')
     }
     else {
-      showToast('error', '建筑已达到最高等级。')
+      showToast('error', 'El edificio ya está en el nivel máximo.')
     }
   }
 }

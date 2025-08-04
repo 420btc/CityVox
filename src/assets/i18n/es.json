@@ -109,7 +109,8 @@
     "building": "edificio"
   },
   "error": {
-    "insufficientFunds": "Fondos insuficientes"
+    "insufficientFunds": "Fondos insuficientes",
+    "noNextLevel": "El edificio ya está en el nivel máximo"
   },
   "emptyState": {
     "select": {

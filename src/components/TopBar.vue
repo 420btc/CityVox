@@ -32,7 +32,7 @@ watch([totalJobs, maxPopulation, power, maxPower], ([newTotalJobs, newMaxPopulat
   // 人口警告：当就业岗位超过人口容量时
   if (newTotalJobs > newMaxPopulation && !(oldTotalJobs > oldMaxPopulation)) {
     eventBus.emit('toast:add', {
-      message: language.value === 'zh' ? '⚠️ 就业岗位不足！人口容量已超负荷' : '⚠️ Job shortage! Population capacity exceeded',
+      message: language.value === 'zh' ? '⚠️ 就业岗位不足！人口容量已超负荷' : '⚠️ ¡Escasez de empleos! Capacidad de población excedida',
       type: 'warning',
     })
   }
@@ -40,15 +40,11 @@ watch([totalJobs, maxPopulation, power, maxPower], ([newTotalJobs, newMaxPopulat
   // 电力警告：当耗电量超过发电量时
   if (newPower > newMaxPower && !(oldPower > oldMaxPower)) {
     eventBus.emit('toast:add', {
-      message: language.value === 'zh' ? '⚡ 电力不足！发电量无法满足需求' : '⚡ Power shortage! Power generation insufficient',
+      message: language.value === 'zh' ? '⚡ 电力不足！发电量无法满足需求' : '⚡ ¡Escasez de energía! Generación insuficiente',
       type: 'error',
     })
   }
 }, { immediate: true })
-
-function toggleLang() {
-  gameState.setLanguage(language.value === 'zh' ? 'en' : 'zh')
-}
 
 function toggleMapOverview() {
   gameState.setShowMapOverview(!showMapOverview.value)
@@ -151,15 +147,11 @@ function showGuideModal() {
         <!-- 按钮区域 - 两列布局 -->
         <div class="grid grid-cols-3 gap-2">
           <!-- 第一行 -->
-          <button class="px-2 py-1 rounded bg-gray-700 text-white text-sm font-medium hover:bg-gray-600 transition" @click="toggleLang">
-            {{ language === 'zh' ? 'EN' : '中' }}
-          </button>
-
           <button
-            class="px-3 col-span-2 py-1 rounded bg-industrial-green text-white text-sm font-bold shadow hover:bg-industrial-green/80 transition"
+            class="px-3 col-span-3 py-1 rounded bg-industrial-green text-white text-sm font-bold shadow hover:bg-industrial-green/80 transition"
             @click="toggleGuide"
           >
-            📖 {{ language === 'zh' ? '指南' : 'Guide' }}
+            📖 {{ language === 'zh' ? '指南' : 'Guía' }}
           </button>
 
           <!-- 第二行 -->
@@ -205,7 +197,7 @@ function showGuideModal() {
             class="px-3 col-span-2 py-1 rounded bg-industrial-accent text-white text-sm font-bold shadow hover:bg-industrial-accent/80 transition"
             @click="toggleMapOverview"
           >
-            {{ language === 'zh' ? (showMapOverview ? '🗺️ 隐藏' : '🗺️ 地图') : (showMapOverview ? '🗺️ Hide' : '🗺️ Map') }}
+            {{ language === 'zh' ? (showMapOverview ? '🗺️ 隐藏' : '🗺️ 地图') : (showMapOverview ? '🗺️ Ocultar' : '🗺️ Mapa') }}
           </button>
         </div>
       </div>
