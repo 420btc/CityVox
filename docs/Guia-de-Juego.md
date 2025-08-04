@@ -1,13 +1,13 @@
-# Guía de Juego CityVox para Principiantes 🏙️
+# Guía de Juego CubeCity para Principiantes 🏙️
 
-¡Bienvenido a CityVox! Este es un juego de simulación y gestión de ciudad 2.5D cartoon relajante y divertido. Aquí planificarás terrenos, construirás varios tipos de edificios, gestionarás recursos y harás que tu ciudad crezca y prospere continuamente.
+¡Bienvenido a CubeCity! Este es un juego de simulación y gestión de ciudad 2.5D cartoon relajante y divertido. Aquí planificarás terrenos, construirás varios tipos de edificios, gestionarás recursos y harás que tu ciudad crezca y prospere continuamente.
 ¡Esta guía te ayudará a comenzar rápidamente y convertirte en un alcalde competente!
 
 ---
 
 ## 1. Introducción al Juego 🎮
 
-CityVox es un juego de simulación y gestión centrado en la construcción de ciudades. Comenzarás desde un terreno vacío, construyendo gradualmente residencias, comercios, industrias, instalaciones ambientales y otros tipos de edificios, diseñando carreteras de manera razonable, gestionando monedas y población, para crear tu ciudad ideal.
+CubeCity es un juego de simulación y gestión centrado en la construcción de ciudades. Comenzarás desde un terreno vacío, construyendo gradualmente residencias, comercios, industrias, instalaciones ambientales y otros tipos de edificios, diseñando carreteras de manera razonable, gestionando monedas y población, para crear tu ciudad ideal.
 
 **Características Principales:**
 - 🏗️ Construcción de ciudad 3D y gestión de recursos
@@ -379,7 +379,7 @@ R: Actualmente necesitas limpiar manualmente los datos del navegador o usar las 
 
 ## 9. Conclusión 🎯
 
-¡Felicidades por completar la guía para principiantes de CityVox! Ahora tienes el conocimiento básico para construir y gestionar tu propia ciudad. Recuerda:
+¡Felicidades por completar la guía para principiantes de CubeCity! Ahora tienes el conocimiento básico para construir y gestionar tu propia ciudad. Recuerda:
 
 - **Paciencia es Clave**: La construcción de ciudades es un proceso gradual, no te apresures
 - **Planificación Primero**: Un buen diseño es más importante que la construcción rápida
@@ -387,4 +387,4 @@ R: Actualmente necesitas limpiar manualmente los datos del navegador o usar las 
 - **Experimentación Continua**: Prueba diferentes combinaciones de edificios y diseños
 - **Disfruta el Proceso**: Lo más importante es disfrutar la diversión de construir ciudades
 
-¡Que tengas una experiencia de construcción de ciudad feliz en CityVox! 🏙️✨
+¡Que tengas una experiencia de construcción de ciudad feliz en CubeCity! 🏙️✨

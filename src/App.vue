@@ -7,6 +7,7 @@ import BuildingSidebar from './components/BuildingSidebar.vue'
 import ConfirmDialog from './components/ConfirmDialog.vue'
 import DashboardFooter from './components/DashboardFooter.vue'
 import GameCanvas from './components/GameCanvas.vue'
+import IntroModal from './components/IntroModal.vue'
 import MapOverview from './components/MapOverview.vue'
 import ModeIndicator from './components/ModeIndicator.vue'
 import RestorePrompt from './components/RestorePrompt.vue'
@@ -17,6 +18,7 @@ import { useBuilding } from './hooks/useBuilding.js'
 
 const showDialog = ref(false)
 const dialogData = ref({})
+const showIntro = ref(false)
 const { getDialogConfig, handleBuildingTransaction } = useBuilding()
 const gameState = useGameState()
 
@@ -56,6 +58,9 @@ if (!window.__confirmDialogListenerAdded) {
   eventBus.on('ui:confirm-action', (data) => {
     dialogData.value = getDialogConfig(data.action, data.buildingType, data.buildingLevel)
     showDialog.value = true
+  })
+  eventBus.on('ui:show-intro', () => {
+    showIntro.value = true
   })
   window.__confirmDialogListenerAdded = true
 }
@@ -136,6 +141,10 @@ onUnmounted(() => {
       :action="dialogData.action"
       @confirm="handleConfirm"
       @cancel="handleCancel"
+    />
+    <IntroModal
+      :show="showIntro"
+      @close="showIntro = false"
     />
   </div>
   <GameCanvas />

@@ -61,6 +61,11 @@ function toggleGuide() {
 function showGuideModal() {
   showGuide.value = true
 }
+
+// 显示介绍视频
+function toggleIntro() {
+  eventBus.emit('ui:show-intro')
+}
 </script>
 
 <template>
@@ -148,10 +153,17 @@ function showGuideModal() {
         <div class="grid grid-cols-3 gap-2">
           <!-- 第一行 -->
           <button
-            class="px-3 col-span-3 py-1 rounded bg-industrial-green text-white text-sm font-bold shadow hover:bg-industrial-green/80 transition"
+            class="px-3 py-1 rounded bg-industrial-green text-white text-sm font-bold shadow hover:bg-industrial-green/80 transition"
             @click="toggleGuide"
           >
             📖 {{ language === 'zh' ? '指南' : 'Guía' }}
+          </button>
+          
+          <button
+            class="px-3 col-span-2 py-1 rounded bg-purple-600 text-white text-sm font-bold shadow hover:bg-purple-700 transition"
+            @click="toggleIntro"
+          >
+            🎬 {{ language === 'zh' ? '介绍' : 'INTRO' }}
           </button>
 
           <!-- 第二行 -->
@@ -209,6 +221,8 @@ function showGuideModal() {
       @close="showGuide = false"
       @show-guide="showGuideModal"
     />
+
+
 
     <!-- 音频管理器 -->
     <AudioManager />

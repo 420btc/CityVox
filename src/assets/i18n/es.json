@@ -14,6 +14,11 @@
       "musicSettings": "Configuración de Música"
     }
   },
+  "introModal": {
+    "title": "Introducción a CityVox",
+    "description": "Bienvenido a CityVox - Tu ciudad en 2.5D te espera. Disfruta de este video introductorio.",
+    "videoNotSupported": "Tu navegador no soporta la reproducción de video."
+  },
   "buildingSidebar": {
     "constructionUnits": "Unidades de Construcción",
     "operationMode": "Modo de Operación",
