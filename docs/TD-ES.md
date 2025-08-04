@@ -461,4 +461,4 @@ case 'special':
 }
 ```
 
-Esta arquitectura proporciona una base sólida y extensible para el sistema de edificios de CubeCity, permitiendo fácil adición de nuevas funcionalidades y tipos de edificios mientras mantiene el código organizado y eficiente.
+Esta arquitectura proporciona una base sólida y extensible para el sistema de edificios de CityVox, permitiendo fácil adición de nuevas funcionalidades y tipos de edificios mientras mantiene el código organizado y eficiente.

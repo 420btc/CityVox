@@ -1,10 +1,10 @@
-# Guía de Desarrollo para Principiantes de CubeCity 👨‍💻
+# Guía de Desarrollo para Principiantes de CityVox 👨‍💻
 
-¡Bienvenido al desarrollo de CubeCity! Esta guía te ayudará a configurar el entorno de desarrollo, entender la arquitectura del proyecto y comenzar a contribuir al desarrollo de este juego de simulación de ciudad 2.5D.
+¡Bienvenido al desarrollo de CityVox! Esta guía te ayudará a configurar el entorno de desarrollo, entender la arquitectura del proyecto y comenzar a contribuir al desarrollo de este juego de simulación de ciudad 2.5D.
 
 ---
 ## 1. Resumen del Proyecto 🎮
-CubeCity es un juego de simulación y gestión de ciudad 2.5D desarrollado con tecnologías web modernas. El proyecto se enfoca en proporcionar una experiencia de construcción de ciudad relajante y divertida con gráficos cartoon y mecánicas de juego intuitivas.
+CityVox es un juego de simulación y gestión de ciudad 2.5D desarrollado con tecnologías web modernas. El proyecto se enfoca en proporcionar una experiencia de construcción de ciudad relajante y divertida con gráficos cartoon y mecánicas de juego intuitivas.
 **Características Principales:**
 🏗️ Sistema de construcción de ciudad 3D
 🏠 Sistema de edificios multidimensional (RCI & ESG)
@@ -61,8 +61,8 @@ CubeCity es un juego de simulación y gestión de ciudad 2.5D desarrollado con t
 
 #### Paso 1: Clonar el Repositorio
 ```bash
-git clone https://github.com/tu-usuario/CubeCity.git
-cd CubeCity
+git clone https://github.com/tu-usuario/CityVox.git
+cd CityVox
 ```
 
 #### Paso 2: Instalar Dependencias
@@ -104,7 +104,7 @@ npm run format       # Formatea código
 ### 4.1 Estructura de Directorios
 
 ```
-CubeCity/
+CityVox/
 ├── public/                 # Archivos estáticos
 │   ├── models/            # Modelos 3D (.glb, .gltf)
 │   ├── textures/          # Texturas e imágenes
@@ -759,7 +759,7 @@ const textureUrl = '/textures/grass.jpg'
 
 ## 13. Conclusión 🎯
 
-¡Felicidades por completar la guía de desarrollo de CubeCity! Ahora tienes todo el conocimiento necesario para:
+¡Felicidades por completar la guía de desarrollo de CityVox! Ahora tienes todo el conocimiento necesario para:
 
 - ✅ Configurar el entorno de desarrollo
 - ✅ Entender la arquitectura del proyecto
@@ -781,7 +781,7 @@ const textureUrl = '/textures/grass.jpg'
 - **Discussions**: Para preguntas y discusiones generales
 - **Discord**: Para chat en tiempo real con otros desarrolladores
 
-¡Esperamos tus contribuciones para hacer de CubeCity un juego aún mejor! 🚀✨
+¡Esperamos tus contribuciones para hacer de CityVox un juego aún mejor! 🚀✨
 
 ---
 

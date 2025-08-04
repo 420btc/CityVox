@@ -1,10 +1,10 @@
 [中文版 README](./README.md)
 
-# CubeCity: 2.5D Cartoon City-Building System
+# CityVox: 2.5D Cartoon City-Building System
 
 > A lightweight 2.5D city-building simulation game based on Three.js and Vue.
 
-Welcome to CubeCity! This is a cartoon-style 2.5D city simulation game where you can build, manage, and expand your very own metropolis. Place buildings, lay down roads, and watch your city grow as you manage resources and expand your territory.
+Welcome to CityVox! This is a cartoon-style 2.5D city simulation game where you can build, manage, and expand your very own metropolis. Place buildings, lay down roads, and watch your city grow as you manage resources and expand your territory.
 
 ![Gameplay Demo](README/游玩时动图.gif)
 
