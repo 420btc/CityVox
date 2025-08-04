@@ -1,106 +1,106 @@
 [English README](./README.en.md)
 
-# 2.5D 卡通城市放置系统 (CubeCity)
+# CityVox - Sistema de Construcción de Ciudad 2.5D
 
-> A lightweight 2.5D city-building simulation game based on Three.js and Vue.
+> Un juego ligero de simulación de construcción de ciudades 2.5D basado en Three.js y Vue.
 
-Welcome to CubeCity! This is a cartoon-style 2.5D city simulation game where you can build, manage, and expand your very own metropolis. Place buildings, lay down roads, and watch your city grow as you manage resources and expand your territory.
+¡Bienvenido a CityVox! Este es un juego de simulación de ciudades 2.5D de estilo cartoon donde puedes construir, gestionar y expandir tu propia metrópolis. Coloca edificios, construye carreteras y observa cómo crece tu ciudad mientras gestionas recursos y expandes tu territorio.
 
 ![Gameplay Demo](README/游玩时动图.gif)
 
-## ✨ 核心功能
+## ✨ Características Principales
 
-*   **🏙️ 自由建设:** 随心所欲地放置、移动和拆除各类建筑与道路，打造独一无二的城市景观。
-*   **🧩 策略规划:** 平衡住宅 (R)、商业 (C)、工业 (I) 的发展，同时兼顾环境 (E)、社会 (S)、治理 (G) 的需求，实现城市可持续发展。
-*   **💰 经济系统:** 建筑会自动产出金币，利用这些金币来建造新建筑、升级或扩展你的领地。
-*   **💾 本地存储:** 你的城市进度会自动保存在本地，随时可以回来继续你的建设大业。
-*   **🎨 卡通风味:** 明快的色彩和可爱的卡通模型，带来轻松愉悦的视觉体验。
+*   **🏙️ Construcción Libre:** Coloca, mueve y demoler libremente todo tipo de edificios y carreteras para crear un paisaje urbano único.
+*   **🧩 Planificación Estratégica:** Equilibra el desarrollo residencial (R), comercial (C) e industrial (I), mientras consideras las necesidades ambientales (E), sociales (S) y de gobernanza (G) para lograr un desarrollo urbano sostenible.
+*   **💰 Sistema Económico:** Los edificios generan automáticamente monedas de oro, utiliza estas monedas para construir nuevos edificios, mejorar o expandir tu territorio.
+*   **💾 Almacenamiento Local:** El progreso de tu ciudad se guarda automáticamente localmente, puedes volver en cualquier momento para continuar tu proyecto de construcción.
+*   **🎨 Estilo Cartoon:** Colores brillantes y modelos cartoon adorables que brindan una experiencia visual relajante y agradable.
 
-| 界面总览                                     | 城市一隅                                       | 离线存储                                     |
+| Vista General de la Interfaz                | Rincón de la Ciudad                           | Almacenamiento Offline                       |
 | :------------------------------------------- | :--------------------------------------------- | :------------------------------------------- |
 | ![Interface Overview](README/界面总览.png) | ![A corner of the city](README/随意把玩城市.png) | ![Offline Storage](README/离线存储.png) |
 
-## 🎮 玩法介绍
+## 🎮 Introducción al Juego
 
-游戏主要围绕四种操作模式展开，让你轻松管理城市的方方面面：
+El juego se centra principalmente en cuatro modos de operación que te permiten gestionar fácilmente todos los aspectos de tu ciudad:
 
-*   **🔍 选择模式 (SELECT):**
-    *   点击建筑查看详细信息，如居民数量、状态、产出等。
-    *   满足条件时可对建筑进行升级，提升其功能和产出。
+*   **🔍 Modo Selección (SELECT):**
+    *   Haz clic en los edificios para ver información detallada como número de residentes, estado, producción, etc.
+    *   Cuando se cumplan las condiciones, puedes mejorar los edificios para aumentar su funcionalidad y producción.
 
-*   **🏗️ 建造模式 (BUILD):**
-    *   从左侧面板选择你想要的建筑。
-    *   在地图上的可用地皮上点击即可放置建筑，实时预览模型和高亮提示让操作更直观。
+*   **🏗️ Modo Construcción (BUILD):**
+    *   Selecciona el edificio que deseas del panel izquierdo.
+    *   Haz clic en terrenos disponibles en el mapa para colocar edificios, con vista previa en tiempo real y resaltado intuitivo.
 
-*   **🚚 搬迁模式 (RELOCATE):**
-    *   选中一个已建好的建筑，然后点击一个空地，即可轻松完成搬迁。
-    *   在放置前，可以旋转建筑以适应你的城市布局。
+*   **🚚 Modo Reubicación (RELOCATE):**
+    *   Selecciona un edificio ya construido, luego haz clic en un terreno vacío para completar fácilmente la reubicación.
+    *   Antes de colocar, puedes rotar el edificio para adaptarlo al diseño de tu ciudad.
 
-*   **💣 拆除模式 (DEMOLISH):**
-    *   切换到此模式，点击不再需要的建筑即可将其拆除。
-    *   拆除建筑会返还部分建造成本。
+*   **💣 Modo Demolición (DEMOLISH):**
+    *   Cambia a este modo y haz clic en edificios que ya no necesites para demolerlos.
+    *   Demoler edificios devuelve parte del costo de construcción.
 
-## 🛠️ 技术栈
+## 🛠️ Stack Tecnológico
 
-*   **核心渲染:** [Three.js](https://threejs.org/)
-*   **前端框架:** [Vue 3](https://vuejs.org/)
-*   **构建工具:** [Vite](https://vitejs.dev/)
-*   **UI & 样式:** [Tailwind CSS](https://tailwindcss.com/) & SCSS
-*   **状态管理:** [Pinia](https://pinia.vuejs.org/)
-*   **事件总线:** [mitt](https://github.com/developit/mitt)
+*   **Renderizado Principal:** [Three.js](https://threejs.org/)
+*   **Framework Frontend:** [Vue 3](https://vuejs.org/)
+*   **Herramienta de Construcción:** [Vite](https://vitejs.dev/)
+*   **UI & Estilos:** [Tailwind CSS](https://tailwindcss.com/) & SCSS
+*   **Gestión de Estado:** [Pinia](https://pinia.vuejs.org/)
+*   **Bus de Eventos:** [mitt](https://github.com/developit/mitt)
 
-## 📚 文档
+## 📚 Documentación
 
-*   **🎮 新手指南:** [玩家游玩指南](./docs/新手指南.md) - 详细的游戏玩法说明和技巧
-*   **👨‍💻 开发指南:** [新手开发指南](./docs/新手开发指南.md) - 完整的开发环境搭建和开发规范
-*   **📋 产品需求:** [PRD 文档](./docs/PRD.md) - 产品需求文档
-*   **🔧 技术设计:** [TD 文档](./docs/TD.md) - 技术设计文档
+*   **🎮 Guía para Principiantes:** [Guía de Juego](./docs/新手指南.md) - Explicaciones detalladas de la jugabilidad y consejos
+*   **👨‍💻 Guía de Desarrollo:** [Guía de Desarrollo para Principiantes](./docs/新手开发指南.md) - Configuración completa del entorno de desarrollo y estándares
+*   **📋 Requisitos del Producto:** [Documento PRD](./docs/PRD.md) - Documento de requisitos del producto
+*   **🔧 Diseño Técnico:** [Documento TD](./docs/TD.md) - Documento de diseño técnico
 
-## 🚀 未来展望
+## 🚀 Perspectivas Futuras
 
-我们计划在未来为游戏增加更多有趣的功能，包括：
+Planificamos agregar más funciones interesantes al juego en el futuro, incluyendo:
 
-*   **动态经济系统:** 市场需求会根据你的城市建筑比例动态变化。
-*   **挑战与失败机制:** 引入破产、人口流失、环境崩溃等失败条件，增加游戏挑战性。
-*   **策略性建筑系统:** 建筑之间将产生相互影响，考验你的规划能力。
-*   **动态事件系统:** 随机发生经济危机、移民潮等事件，让城市管理充满变数。
-*   **科技树与政策系统:** 解锁新技术，颁布新政策，从更高维度引导城市发展。
+*   **Sistema Económico Dinámico:** La demanda del mercado cambiará dinámicamente según la proporción de edificios en tu ciudad.
+*   **Mecanismos de Desafío y Fracaso:** Introducir condiciones de fracaso como bancarrota, pérdida de población, colapso ambiental, etc., para aumentar el desafío del juego.
+*   **Sistema de Edificios Estratégicos:** Los edificios se influirán mutuamente, poniendo a prueba tus habilidades de planificación.
+*   **Sistema de Eventos Dinámicos:** Eventos aleatorios como crisis económicas, oleadas migratorias, etc., harán que la gestión urbana esté llena de variables.
+*   **Árbol Tecnológico y Sistema de Políticas:** Desbloquear nuevas tecnologías, promulgar nuevas políticas, guiar el desarrollo urbano desde una dimensión superior.
 
-## 🧑‍💻 作者
+## 🧑‍💻 Autor
 
-Developed by [hexianWeb](https://github.com/hexianWeb).
+Desarrollado por Carlos Freire.
 
-## 📄 许可
+## 📄 Licencia
 
-This project is licensed under the [MIT License](LICENSE).
+Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
 
-## 新功能：建筑状态轮循显示系统 🔄
+## Nueva Funcionalidad: Sistema de Visualización Rotativa de Estados de Edificios 🔄
 
-### 功能特点
+### Características de la Funcionalidad
 
-1. **智能分类展示**
-   - **Debuff 优先**：当建筑存在问题状态时，优先轮循显示所有 debuff 状态
-   - **Buff 候补**：当没有问题状态时，轮循显示所有增益状态
-   - **平滑切换**：状态间采用淡入淡出动画，视觉体验流畅
+1. **Visualización Inteligente Categorizada**
+   - **Prioridad Debuff**: Cuando el edificio tiene estados problemáticos, se muestran rotativamente todos los estados debuff con prioridad
+   - **Buff de Respaldo**: Cuando no hay estados problemáticos, se muestran rotativamente todos los estados de beneficio
+   - **Transición Suave**: Animaciones de fade in/out entre estados para una experiencia visual fluida
 
-2. **轮循机制**
-   - 每 2.5 秒自动切换显示下一个状态
-   - 单状态时静态显示，多状态时自动轮循
-   - 支持实时状态变化响应
+2. **Mecanismo Rotativo**
+   - Cambio automático cada 2.5 segundos al siguiente estado
+   - Visualización estática para un solo estado, rotación automática para múltiples estados
+   - Soporte para respuesta a cambios de estado en tiempo real
 
-3. **状态分类**
+3. **Clasificación de Estados**
    ```javascript
    DEBUFF: ['MISSING_ROAD', 'MISSING_POWER', 'MISSING_POPULATION', 'OVER_POPULATION', 'MISSING_POLLUTION']
    BUFF: ['POWER_BOOST', 'ECONOMY_BOOST', 'POPULATION_BOOST', 'COIN_BUFF', 'HUMAN_BUFF', 'UPGRADE']
    ```
 
-### 使用示例
+### Ejemplo de Uso
 
-在建筑类中配置状态：
+Configuración de estados en la clase de edificio:
 
 ```javascript
 this.statusConfig = [
-  // === DEBUFF 状态（问题状态，优先轮循） ===
+  // === Estados DEBUFF (estados problemáticos, rotación prioritaria) ===
   {
     statusType: 'MISSING_ROAD',
     condition: (building, gs) => {
@@ -110,7 +110,7 @@ this.statusConfig = [
     effect: { type: 'missRoad', offsetY: 0.7 },
   },
 
-  // === BUFF 状态（增益状态，无问题时轮循） ===
+  // === Estados BUFF (estados de beneficio, rotación cuando no hay problemas) ===
   {
     statusType: 'COIN_BUFF',
     condition: (building, gs) => {
@@ -122,11 +122,11 @@ this.statusConfig = [
 ]
 ```
 
-### 技术实现
+### Implementación Técnica
 
-- **状态管理**：从单状态改为多状态数组管理
-- **定时轮循**：使用 `setInterval` 实现自动切换
-- **动画优化**：专门的 `fadeOut` 方法确保切换流畅
-- **内存安全**：完善的清理机制防止内存泄漏
+- **Gestión de Estados**: Cambio de gestión de estado único a gestión de array de múltiples estados
+- **Rotación Temporizada**: Uso de `setInterval` para implementar cambio automático
+- **Optimización de Animaciones**: Método `fadeOut` dedicado para asegurar transiciones fluidas
+- **Seguridad de Memoria**: Mecanismo de limpieza completo para prevenir fugas de memoria
 
-参考实现：`src/js/components/tiles/buildings/park.js`
+Referencia de implementación: `src/js/components/tiles/buildings/park.js`
