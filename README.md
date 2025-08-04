@@ -51,10 +51,10 @@ El juego se centra principalmente en cuatro modos de operación que te permiten 
 
 ## 📚 Documentación
 
-*   **🎮 Guía para Principiantes:** [Guía de Juego](./docs/新手指南.md) - Explicaciones detalladas de la jugabilidad y consejos
-*   **👨‍💻 Guía de Desarrollo:** [Guía de Desarrollo para Principiantes](./docs/新手开发指南.md) - Configuración completa del entorno de desarrollo y estándares
-*   **📋 Requisitos del Producto:** [Documento PRD](./docs/PRD.md) - Documento de requisitos del producto
-*   **🔧 Diseño Técnico:** [Documento TD](./docs/TD.md) - Documento de diseño técnico
+*   **🎮 Guía para Principiantes:** [Guía de Juego](./docs/Guia-de-Juego.md) - Explicaciones detalladas de la jugabilidad y consejos
+*   **👨‍💻 Guía de Desarrollo:** [Guía de Desarrollo para Principiantes](./docs/Guia-de-Desarrollo.md) - Configuración completa del entorno de desarrollo y estándares
+*   **📋 Requisitos del Producto:** [Documento PRD](./docs/PRD-ES.md) - Documento de requisitos del producto
+*   **🔧 Diseño Técnico:** [Documento TD](./docs/TD-ES.md) - Documento de diseño técnico
 
 ## 🚀 Perspectivas Futuras
 
