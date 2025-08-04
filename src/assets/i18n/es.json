@@ -1,0 +1,292 @@
+{
+  "topbar": {
+    "credits": "Créditos",
+    "population": "Población",
+    "territory": "Territorio",
+    "power": "Energía",
+    "level": "Nv",
+    "day": "Día",
+    "music": {
+      "playMusic": "Reproducir Música",
+      "pauseMusic": "Pausar Música",
+      "nextTrack": "Siguiente Pista",
+      "volumeControl": "Control de Volumen",
+      "musicSettings": "Configuración de Música"
+    }
+  },
+  "buildingSidebar": {
+    "constructionUnits": "Unidades de Construcción",
+    "operationMode": "Modo de Operación",
+    "select": "Seleccionar",
+    "build": "Construir",
+    "relocate": "Reubicar",
+    "demolish": "Demoler",
+    "switchToBuildMode": "Por favor cambia al modo de construcción"
+  },
+  "dashboardFooter": {
+    "cityMetrics": "Métricas de la Ciudad",
+    "buildings": "Edificios",
+    "dailyIncome": "Ingresos Diarios",
+    "efficiency": "Contaminación",
+    "stability": "Estabilidad",
+    "achievements": "Logros",
+    "firstFactory": "Primera Fábrica",
+    "industrialTycoon": "Magnate Industrial",
+    "viewAllAchievements": "Ver Todos los Logros",
+    "achievementLoading": "Sistema de logros cargando...",
+    "systemStatus": "Estado del Sistema",
+    "powerGrid": "Red Eléctrica",
+    "transport": "Transporte",
+    "security": "Seguridad",
+    "environment": "Medio Ambiente",
+    "limited": "Limitado",
+    "secure": "Seguro",
+    "moderate": "Moderado",
+    "online": "En Línea"
+  },
+  "modeIndicator": {
+    "mode": "Modo"
+  },
+  "selectedIndicator": {
+    "selected": "Seleccionado"
+  },
+  "toastContainer": {
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Advertencia",
+    "info": "Información"
+  },
+  "buildingDetails": {
+    "unitDetails": "Detalles de la Unidad",
+    "selectABuilding": "Selecciona un edificio",
+    "clickToView": "Haz clic en cualquier estructura para ver detalles",
+    "status": "Estado",
+    "operational": "Operativo",
+    "production": "Producción",
+    "outputPerHour": "Producción/Hora",
+    "workers": "Trabajadores",
+    "maintenance": "Mantenimiento",
+    "condition": "Condición",
+    "nextService": "Próximo Servicio",
+    "upgradeUnit": "Mejorar Unidad",
+    "maintenanceBtn": "Mantenimiento",
+    "demolish": "Demoler",
+    "tile": "Posición del Terreno",
+    "coinOutput": "Producción de Monedas",
+    "powerUsage": "Uso de Energía",
+    "powerOutput": "Producción de Energía",
+    "maxPopulation": "Población Máxima",
+    "pollution": "Contaminación",
+    "cost": "Costo de Construcción",
+    "displayName": "Nombre del Nivel",
+    "category": "Categoría",
+    "upgradeCost": "Costo de Mejora",
+    "nextLevel": "Siguiente Nivel",
+    "upgradeInfo": "Información de Mejora",
+    "currentLevel": "Nivel Actual",
+    "improvements": "Mejoras",
+    "maxLevel": "Nivel Máximo Alcanzado"
+  },
+  "confirmDialog": {
+    "title": "Confirmar",
+    "message": "¿Estás seguro de que quieres demoler este edificio?",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  },
+  "common": {
+    "cancel": "Cancelar"
+  },
+  "dialog": {
+    "selectTitle": "Mejorar Edificio",
+    "selectMessage": "¿Estás seguro de mejorar <span class=\"text-green-500 font-bold\"> {building} </span>? Costará <span class=\"text-yellow-500 font-bold\"> {cost} </span> créditos.",
+    "selectConfirm": "Confirmar Mejora",
+    "relocateTitle": "Reubicar Edificio",
+    "relocateMessage": "¿Estás seguro de reubicar <span class=\"text-industrial-accent font-bold\"> {building} </span>?",
+    "relocateConfirm": "Confirmar Reubicación",
+    "demolishTitle": "Demoler Edificio",
+    "demolishMessage": "¿Estás seguro de demoler <span class=\"text-industrial-accent font-bold\"> {building} </span>? Recibirás <span class=\"text-yellow-500 font-bold\"> {refund} </span> créditos de vuelta.",
+    "demolishConfirm": "Confirmar Demolición",
+    "building": "edificio"
+  },
+  "error": {
+    "insufficientFunds": "Fondos insuficientes"
+  },
+  "emptyState": {
+    "select": {
+      "title": "Modo de Selección",
+      "description": "Haz clic en cualquier edificio en la escena para ver información detallada y estadísticas",
+      "status": "Listo para inspeccionar edificios"
+    },
+    "build": {
+      "title": "Modo de Construcción",
+      "description": "Selecciona un tipo de edificio de la barra lateral, luego haz clic en cualquier terreno vacío para construirlo",
+      "strategicTip": "Consejo Estratégico",
+      "tipDescription": "El suministro de energía, los factores ambientales y la satisfacción de los residentes impactan directamente el crecimiento de la población y la producción de monedas",
+      "cameraControls": "Presiona las teclas de flecha izquierda o derecha para ajustar la dirección de la cámara"
+    },
+    "relocate": {
+      "title": "Modo de Reubicación",
+      "rotateBuilding": "Rotar edificio seleccionado",
+      "instructions": "Haz clic en el terreno A luego en el terreno B para reubicar el edificio",
+      "requirements": "El terreno A debe tener un edificio\nEl terreno B debe estar vacío",
+      "cancelInstruction": "Presiona ESC para cancelar"
+    },
+    "demolish": {
+      "title": "Modo de Demolición",
+      "description": "Haz clic en cualquier edificio en la escena para demolerlo permanentemente",
+      "materialRecovery": "Recuperación de Materiales",
+      "refundDescription": "El 70% de los materiales de construcción serán reembolsados a tu inventario"
+    }
+  },
+  "guideModal": {
+    "title": "CubeCity Guía para Principiantes",
+    "toggleGuide": "📖 Guía",
+    "toggleQuickRef": "📋 Referencia Rápida (Importante)",
+    "gameIntroduction": {
+      "title": "Introducción al Juego",
+      "description": "CubeCity es un juego de simulación de construcción de ciudades donde comienzas desde un terreno vacío y gradualmente construyes edificios residenciales, comerciales, industriales y ambientales.",
+      "coreFeatures": "Características Principales",
+      "feature1": "Construcción de Ciudades 3D y Gestión de Recursos",
+      "feature2": "Sistema de Edificios Multidimensional RCI & ESG",
+      "feature3": "Almacenamiento Local e Interfaz Responsiva",
+      "feature4": "Ricas Extensiones y Espacio de Personalización"
+    },
+    "quickStart": {
+      "title": "Inicio Rápido",
+      "step1": "Abre el juego y haz clic en 'Comenzar Nueva Ciudad'",
+      "step2": "Obtendrás un terreno de 16x16 y monedas iniciales 💰",
+      "step3": "Selecciona tipos de edificios del panel izquierdo y haz clic en las parcelas para colocarlos",
+      "step4": "¡Observa el desarrollo de la ciudad, expande parcelas y mejora edificios para experimentar el crecimiento urbano!"
+    },
+    "basicOperations": {
+      "title": "Operaciones Básicas",
+      "buildingOperations": "Operaciones de Edificios",
+      "selectBuilding": "Seleccionar Edificio: Haz clic en las tarjetas de edificios en el panel izquierdo",
+      "placeBuilding": "Colocar Edificio: Haz clic en terreno vacío para construir",
+      "moveBuilding": "Mover Edificio: Cambia al modo reubicación",
+      "upgradeBuilding": "Mejorar Edificio: Mejora cuando se cumplan las condiciones",
+      "demolishBuilding": "Demoler Edificio: Cambia al modo demolición",
+      "keyboardShortcuts": "Atajos de Teclado",
+      "rotateKey": "Tecla R",
+      "rotateBuilding": "Rotar dirección del edificio",
+      "escapeKey": "Tecla ESC",
+      "cancelOperation": "Cancelar operación actual",
+      "rightClick": "Clic Derecho del Ratón",
+      "cancelSelection": "Cancelar selección",
+      "mouseScroll": "Rueda del Ratón",
+      "zoomView": "Hacer zoom en la vista",
+      "modeSwitching": "Cambio de Modo",
+      "selectMode": "Seleccionar: Ver información del edificio",
+      "buildMode": "Construir: Colocar nuevos edificios",
+      "relocateMode": "Reubicar: Mover edificios",
+      "demolishMode": "Demoler: Eliminar edificios"
+    },
+    "buildingSystem": {
+      "title": "Detalles del Sistema de Edificios",
+      "buildingCategories": "Categorías de Edificios",
+      "residential": "Residencial",
+      "house": "Casa: Residencial básico",
+      "mansion": "Mansión: Residencial avanzado",
+      "commercial": "Comercial",
+      "shop": "Tienda: Comercial básico",
+      "office": "Oficina: Comercial avanzado",
+      "industrial": "Industrial",
+      "factory": "Fábrica: Industrial básico",
+      "chemicalPlant": "Planta Química: Industrial avanzado",
+      "nuclearPlant": "Planta Nuclear: Generación de energía",
+      "environmental": "Ambiental",
+      "park": "Parque: Mejorar ambiente",
+      "garbageStation": "Estación de Basura: Procesar residuos",
+      "solarPanel": "Panel Solar: Energía limpia",
+      "windTurbine": "Turbina Eólica: Energía limpia",
+      "buildingInteractions": "Interacciones de Edificios",
+      "houseNearPark": "Casa cerca del Parque: +10% capacidad de población",
+      "shopNearPark": "Tienda cerca del Parque: +10% ingresos",
+      "factoryNearPark": "Fábrica cerca del Parque: -25% contaminación",
+      "houseNearFactory": "Casa cerca de Fábrica: -15% capacidad de población"
+    },
+    "resourceManagement": {
+      "title": "Sistema de Gestión de Recursos",
+      "mainResources": "Recursos Principales",
+      "coins": "Monedas: Construir, mejorar, expandir",
+      "population": "Población: Determinada por la capacidad de vivienda",
+      "power": "Energía: Consumo de edificios, necesita plantas de energía",
+      "pollution": "Contaminación: Producción industrial, los edificios ambientales la reducen"
+    },
+    "advancedTips": {
+      "title": "Consejos Avanzados",
+      "layoutStrategy": "Estrategia de Diseño",
+      "tip1": "Casa cerca del Parque: Aumentar satisfacción",
+      "tip2": "Industria lejos de casas: Reducir contaminación",
+      "tip3": "Comercio cerca del Parque: Aumentar ingresos",
+      "tip4": "Industria cerca de estación de basura: Reducir contaminación",
+      "tip5": "Instalaciones de energía cerca de casas: Aumentar eficiencia"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "P: ¿No tienes suficientes monedas?",
+      "a1": "R: Prioriza edificios comerciales e industriales para aumentar la producción de monedas",
+      "q2": "P: ¿Crecimiento lento de población?",
+      "a2": "R: Aumenta la capacidad de vivienda, mejora la satisfacción, construye más empleos",
+      "q3": "P: ¿Demasiada contaminación?",
+      "a3": "R: Construye más parques y estaciones de basura, mantén la industria lejos de las áreas residenciales"
+    },
+    "gameTips": {
+      "title": "Consejos del Juego",
+      "tip1": "Diseño razonable: Casas cerca de parques y hospitales aumentan la satisfacción",
+      "tip2": "Balance de recursos: Mantén el equilibrio de población, empleos, monedas, satisfacción, energía, etc.",
+      "tip3": "Prioridad de mejora: Prioriza edificios con alta producción e impacto",
+      "tip4": "Observa indicadores de estado: Varios íconos de estado aparecen en la parte superior de los edificios, manéjalos rápidamente para evitar pérdidas",
+      "tip5": "Guardado automático: El juego se guarda automáticamente, no te preocupes por perder el progreso",
+      "tip6": "Disfruta el proceso: La construcción de ciudades es un proceso gradual, disfruta cada paso del crecimiento",
+      "tip7": "Optimización de rendimiento: Se recomienda habilitar la aceleración GPU en chrome://flags para una mejor experiencia de juego"
+    },
+    "quickReference": {
+      "title": "Referencia Rápida de Interacciones de Edificios",
+      "description": "Los edificios interactúan entre sí, el diseño adecuado proporciona bonificaciones adicionales. Distancia 1 significa adyacente, distancia 2-3 significa dentro de 2-3 casillas.",
+      "residential": "Interacciones de Edificios Residenciales",
+      "houseNearPark": "Cada parque adyacente: +10% capacidad de población",
+      "houseNearMonument": "Cada monumento adyacente: +10% capacidad de población",
+      "houseNearFactory": "Cada fábrica adyacente: -15% capacidad de población",
+      "houseNearChemical": "Cada planta química adyacente: -15% capacidad de población",
+      "commercial": "Interacciones de Edificios Comerciales",
+      "shopNearPark": "Cada parque adyacente: +10% ingresos",
+      "officeNearPark": "Cada parque adyacente: +12% ingresos",
+      "shopNearWater": "Torre de agua adyacente: +25% ingresos",
+      "industrial": "Interacciones de Edificios Industriales",
+      "factoryNearPark": "Cada parque adyacente: -25% contaminación",
+      "factoryNearChemical": "Planta química adyacente: -25% contaminación",
+      "factoryNearWater": "Torre de agua adyacente: +25% ingresos",
+      "chemicalNearFactory": "Fábrica dentro de 3 casillas: +20% ingresos",
+      "chemicalNearGarbage": "Estación de basura dentro de 2-3 casillas: -30% contaminación",
+      "power": "Interacciones de Instalaciones de Energía",
+      "solarNearHouse": "Cada casa adyacente: +5% eficiencia energética",
+      "solarNearPower": "Instalación de energía adyacente: +5% eficiencia energética",
+      "windNearPark": "Parque adyacente: +8% eficiencia energética",
+      "environmental": "Interacciones de Instalaciones Ambientales",
+      "parkNearHouse": "Casas adyacentes: Bonificación de población",
+      "parkNearCommerce": "Comercio adyacente: Bonificación de ingresos",
+      "parkNearIndustry": "Industria adyacente: Reducción de contaminación",
+      "garbageNearIndustry": "Industria dentro de 2-3 casillas: Reducción de contaminación",
+      "usageTips": "Consejos de Uso",
+      "tip1": "Diseña edificios adecuadamente para maximizar los efectos de interacción",
+      "tip2": "Mantén las casas lejos de la industria, coloca el comercio cerca de los parques",
+      "tip3": "Las instalaciones de energía cerca de las casas aumentan la eficiencia",
+      "tip4": "Las instalaciones ambientales reducen la contaminación industrial"
+    }
+  },
+  "restorePrompt": {
+    "title": "¿Continuar último juego?",
+    "description": "Se detectó una partida guardada anterior. ¿Te gustaría continuar?",
+    "continueGame": "Sí, continuar último juego",
+    "startNew": "No, comenzar nuevo juego",
+    "musicTip": "Haz clic en el botón de música en la esquina superior derecha",
+    "gpuTip": "Habilita la aceleración GPU en chrome://flags para una mejor experiencia de juego"
+  },
+  "defaults": {
+    "title": "Título",
+    "message": "Sin mensaje",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  }
+}
