@@ -14,146 +14,66 @@
         >
           {{ aiEnabled ? $t('ai.disable') : $t('ai.enable') }}
         </button>
-        <button 
-          @click.stop="toggleSettings" 
-          class="settings-btn"
-          :title="$t('ai.settings')"
-        >
-          ⚙️
-        </button>
+
         <button @click.stop="toggleExpanded" class="expand-btn">
           <span :class="isExpanded ? 'rotate-180' : ''">▼</span>
         </button>
       </div>
     </div>
 
-    <!-- Modal de configuración -->
-    <div v-if="showSettings" class="settings-modal" @click="toggleSettings">
-      <div class="settings-content" @click.stop>
-        <div class="settings-header">
-          <h4 class="text-lg font-semibold">{{ $t('ai.settings') }}</h4>
-          <button @click="toggleSettings" class="close-btn">✕</button>
-        </div>
-        <div class="settings-body">
-          <!-- API Key Principal -->
-          <div class="setting-item">
-            <label class="setting-label">{{ $t('ai.primaryApiKey') }}:</label>
-            <div class="api-key-display">
-              <span class="api-key-masked">{{ maskedPrimaryKey }}</span>
-              <button @click="clearPrimaryKey" class="clear-btn">{{ $t('ai.clear') }}</button>
-            </div>
-          </div>
-          <div class="setting-item">
-            <div class="flex gap-2">
-              <input 
-                v-model="tempPrimaryKey" 
-                type="password" 
-                :placeholder="$t('ai.apiKeyPlaceholder')"
-                class="api-input"
-                @keyup.enter="savePrimaryKey"
-              />
-              <button @click="savePrimaryKey" class="save-btn">
-                {{ $t('ai.save') }}
-              </button>
-            </div>
-          </div>
 
-          <!-- API Key Secundaria -->
-          <div class="setting-item">
-            <label class="setting-label">{{ $t('ai.secondaryApiKey') }}:</label>
-            <div class="api-key-display">
-              <span class="api-key-masked">{{ maskedSecondaryKey }}</span>
-              <button @click="clearSecondaryKey" class="clear-btn">{{ $t('ai.clear') }}</button>
-            </div>
-          </div>
-          <div class="setting-item">
-            <div class="flex gap-2">
-              <input 
-                v-model="tempSecondaryKey" 
-                type="password" 
-                :placeholder="$t('ai.apiKeySecondaryPlaceholder')"
-                class="api-input"
-                @keyup.enter="saveSecondaryKey"
-              />
-              <button @click="saveSecondaryKey" class="save-btn">
-                {{ $t('ai.save') }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Estado y acciones -->
-          <div class="setting-item">
-            <label class="setting-label">{{ $t('ai.status') }}:</label>
-            <span :class="['status-indicator', apiStatusClass]">
-              {{ apiStatusText }}
-            </span>
-          </div>
-          
-          <div class="setting-item">
-            <button @click="clearAllKeys" class="clear-all-btn">
-              {{ $t('ai.clearAll') }}
-            </button>
-          </div>
-          
-          <div class="setting-item">
-            <p class="api-help-text">
-              <strong>💡 Instrucciones:</strong><br>
-              1. Pega tu API key de OpenAI en el campo "API Key Principal"<br>
-              2. Haz clic en "Guardar" para confirmar<br>
-              3. La API key secundaria es opcional (solo para respaldo)<br>
-              <br>
-              <em>Las API keys se guardan localmente en tu navegador y nunca se envían a terceros.</em>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Contenido del chat -->
     <div v-if="isExpanded" class="chat-content">
       <!-- Configuración de API Key -->
       <div v-if="!hasValidApiKey" class="api-config">
-        <h4 class="text-md font-semibold mb-2">{{ $t('ai.apiConfig') }}</h4>
+        <h4 class="text-md font-semibold mb-2">🔑 Configurar API Key</h4>
         
-        <!-- API Key Principal -->
         <div class="mb-3">
-          <label class="text-sm font-medium mb-1 block">{{ $t('ai.primaryApiKey') }}</label>
+          <label class="text-sm font-medium mb-1 block">API Key de OpenAI</label>
           <div class="flex gap-2">
             <input 
-              v-model="tempPrimaryKey" 
+              v-model="apiKeyInput" 
               type="password" 
-              :placeholder="$t('ai.apiKeyPlaceholder')"
+              placeholder="sk-..."
               class="api-input"
-              @keyup.enter="savePrimaryKey"
+              @keyup.enter="saveApiKey"
+              :disabled="isValidating"
             />
-            <button @click="savePrimaryKey" class="save-btn">
-              {{ $t('ai.save') }}
+            <button 
+              @click="saveApiKey" 
+              :class="['save-btn', { 'error': apiKeyError }]"
+              :disabled="!apiKeyInput.trim() || isValidating"
+            >
+              <span v-if="isValidating" class="spinner"></span>
+              {{ isValidating ? 'Validando...' : (apiKeyError ? 'Error' : 'Guardar') }}
             </button>
+          </div>
+          <div v-if="apiKeyError" class="error-message">
+            ❌ API Key inválida. Verifica que sea correcta.
           </div>
         </div>
         
-        <!-- API Key Secundaria -->
-        <div class="mb-3">
-          <label class="text-sm font-medium mb-1 block">{{ $t('ai.secondaryApiKey') }}</label>
-          <div class="flex gap-2">
-            <input 
-              v-model="tempSecondaryKey" 
-              type="password" 
-              :placeholder="$t('ai.apiKeySecondaryPlaceholder')"
-              class="api-input"
-              @keyup.enter="saveSecondaryKey"
-            />
-            <button @click="saveSecondaryKey" class="save-btn">
-              {{ $t('ai.save') }}
-            </button>
-          </div>
+        <div class="api-help-text">
+          <p><strong>📝 Instrucciones:</strong></p>
+          <ol>
+            <li>Obtén tu API key desde <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a></li>
+            <li>Pega la API key arriba</li>
+            <li>Haz clic en "Guardar" para validar y activar la IA</li>
+          </ol>
+          <p><em>🔒 Tu API key se guarda localmente y nunca se comparte.</em></p>
         </div>
-        
-        <p class="text-xs text-gray-500 mt-1">{{ $t('ai.apiKeyHelp') }}</p>
       </div>
 
       <!-- Chat Messages -->
       <div v-else class="chat-messages" ref="messagesContainer">
+        <!-- Header del chat con botón de configuración -->
+        <div class="chat-header">
+          <span class="chat-title">💬 Chat con IA</span>
+          <button @click="clearApiKey" class="config-btn" title="Cambiar API Key">
+            ⚙️
+          </button>
+        </div>
         <div 
           v-for="message in chatHistory" 
           :key="message.id"
@@ -190,6 +110,23 @@
         >
           {{ isProcessing ? $t('ai.processing') : $t('ai.send') }}
         </button>
+      </div>
+
+      <!-- Estado cuando IA está desactivada -->
+      <div v-if="hasValidApiKey && !aiEnabled" class="ai-disabled-state">
+        <div class="disabled-message">
+          <span class="disabled-icon">🤖💤</span>
+          <p class="disabled-text">IA desactivada</p>
+          <p class="disabled-subtitle">Activa la IA para comenzar a chatear</p>
+        </div>
+        <div class="disabled-actions">
+          <button @click="toggleAI" class="activate-btn">
+            ▶️ Activar IA
+          </button>
+          <button @click="clearApiKey" class="change-key-btn">
+            🔑 Cambiar API Key
+          </button>
+        </div>
       </div>
 
       <!-- Memoria y estado de la IA -->
@@ -258,18 +195,18 @@ export default {
     const aiPlayer = useAIPlayer()
     
     const isExpanded = ref(false)
-    const showSettings = ref(false)
-    const tempPrimaryKey = ref('')
-    const tempSecondaryKey = ref('')
+    const apiKeyInput = ref('')
+    const isValidating = ref(false)
+    const apiKeyError = ref(false)
+    const apiKeyStored = ref(localStorage.getItem('openai_api_key') || '')
     const userMessage = ref('')
     const isProcessing = ref(false)
     const messagesContainer = ref(null)
-    
     const chatHistory = ref([])
     const aiActionHistory = ref([])
     
     const hasValidApiKey = computed(() => {
-      return localStorage.getItem('openai_api_key_primary') !== null || localStorage.getItem('openai_api_key_secondary') !== null
+      return apiKeyStored.value && apiKeyStored.value.length > 0
     })
     
     const aiEnabled = computed(() => aiPlayer.isEnabled.value)
@@ -281,104 +218,68 @@ export default {
     const aiLastAction = computed(() => aiPlayer.lastAIAction.value)
     const aiMemoryData = computed(() => aiPlayer.aiMemory.value)
     
-    const maskedPrimaryKey = computed(() => {
-      const apiKey = localStorage.getItem('openai_api_key_primary')
-      if (!apiKey) return 'No configurada'
-      return apiKey.substring(0, 8) + '...' + apiKey.substring(apiKey.length - 4)
-    })
 
-    const maskedSecondaryKey = computed(() => {
-      const apiKey = localStorage.getItem('openai_api_key_secondary')
-      if (!apiKey) return 'No configurada'
-      return apiKey.substring(0, 8) + '...' + apiKey.substring(apiKey.length - 4)
-    })
-
-    const apiStatusClass = computed(() => {
-      const primaryKey = localStorage.getItem('openai_api_key_primary')
-      const secondaryKey = localStorage.getItem('openai_api_key_secondary')
-      
-      if (primaryKey && secondaryKey) return 'both-configured'
-      if (primaryKey) return 'primary-configured'
-      if (secondaryKey) return 'secondary-only'
-      return 'not-configured'
-    })
-
-    const apiStatusText = computed(() => {
-      const primaryKey = localStorage.getItem('openai_api_key_primary')
-      const secondaryKey = localStorage.getItem('openai_api_key_secondary')
-      
-      if (primaryKey && secondaryKey) return t('ai.bothConfigured')
-      if (primaryKey) return t('ai.primaryConfigured')
-      if (secondaryKey) return t('ai.usingFallback')
-      return t('ai.notConfigured')
-    })
     
     const toggleExpanded = () => {
       isExpanded.value = !isExpanded.value
     }
     
-    const toggleSettings = () => {
-      showSettings.value = !showSettings.value
-    }
-    
-    const clearPrimaryKey = () => {
-      localStorage.removeItem('openai_api_key_primary')
-      aiPlayer.stopAI()
-      aiPlayer.initializeAI()
-      addSystemMessage('API key principal eliminada')
-    }
 
-    const clearSecondaryKey = () => {
-      localStorage.removeItem('openai_api_key_secondary')
-      aiPlayer.initializeAI()
-      addSystemMessage('API key secundaria eliminada')
-    }
-
-    const clearAllKeys = () => {
-      localStorage.removeItem('openai_api_key_primary')
-      localStorage.removeItem('openai_api_key_secondary')
-      aiPlayer.stopAI()
-      addSystemMessage('Todas las API keys eliminadas')
-      showSettings.value = false
-    }
     
-    const savePrimaryKey = () => {
-      const apiKey = tempPrimaryKey.value.trim()
-      if (apiKey) {
-        // Validar formato básico de API key de OpenAI
-        if (apiKey.startsWith('sk-') && apiKey.length > 20) {
-          localStorage.setItem('openai_api_key_primary', apiKey)
-          tempPrimaryKey.value = ''
-          aiPlayer.initializeAI()
-          addSystemMessage('✅ API key principal guardada correctamente')
-          
-          // Cerrar el modal después de guardar exitosamente
-          setTimeout(() => {
-            showSettings.value = false
-          }, 1500)
-        } else {
-          addSystemMessage('❌ Error: La API key debe comenzar con "sk-" y tener más de 20 caracteres')
-        }
-      } else {
-        addSystemMessage('❌ Error: Por favor ingresa una API key válida')
+    const validateApiKey = async (apiKey) => {
+      try {
+        const response = await fetch('https://api.openai.com/v1/models', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          }
+        })
+        
+        return response.ok
+      } catch (error) {
+        console.error('Error validating API key:', error)
+        return false
       }
     }
-
-    const saveSecondaryKey = () => {
-      const apiKey = tempSecondaryKey.value.trim()
-      if (apiKey) {
-        // Validar formato básico de API key de OpenAI
-        if (apiKey.startsWith('sk-') && apiKey.length > 20) {
-          localStorage.setItem('openai_api_key_secondary', apiKey)
-          tempSecondaryKey.value = ''
-          aiPlayer.initializeAI()
-          addSystemMessage('✅ API key secundaria guardada correctamente')
-        } else {
-          addSystemMessage('❌ Error: La API key debe comenzar con "sk-" y tener más de 20 caracteres')
+    
+    const saveApiKey = async () => {
+      if (!apiKeyInput.value.trim()) return
+      
+      isValidating.value = true
+      apiKeyError.value = false
+      
+      const isValid = await validateApiKey(apiKeyInput.value.trim())
+      
+      if (isValid) {
+        const trimmedKey = apiKeyInput.value.trim()
+        localStorage.setItem('openai_api_key', trimmedKey)
+        apiKeyStored.value = trimmedKey
+        apiKeyInput.value = ''
+        // Activar automáticamente la IA si la key es válida
+        if (!aiEnabled.value) {
+          toggleAI()
         }
       } else {
-        addSystemMessage('❌ Error: Por favor ingresa una API key válida')
+        apiKeyError.value = true
+        setTimeout(() => {
+          apiKeyError.value = false
+        }, 3000)
       }
+      
+      isValidating.value = false
+    }
+
+    const clearApiKey = () => {
+      localStorage.removeItem('openai_api_key')
+      apiKeyStored.value = ''
+      apiKeyInput.value = ''
+      apiKeyError.value = false
+      // Desactivar la IA si estaba activada
+      if (aiEnabled.value) {
+        toggleAI()
+      }
+      console.log('🗑️ API Key eliminada')
     }
     
     const toggleAI = () => {
@@ -474,32 +375,26 @@ export default {
     
     return {
       isExpanded,
-      showSettings,
-      tempPrimaryKey,
-      tempSecondaryKey,
+      apiKeyInput,
+      isValidating,
+      apiKeyError,
+      apiKeyStored,
       userMessage,
       isProcessing,
       messagesContainer,
       chatHistory,
       aiActionHistory,
       hasValidApiKey,
+
       aiEnabled,
       aiPlaying,
       aiStepCounter,
       aiTimeUntilNext,
       aiLastAction,
       aiMemoryData,
-      maskedPrimaryKey,
-      maskedSecondaryKey,
-      apiStatusClass,
-      apiStatusText,
       toggleExpanded,
-      toggleSettings,
-      clearPrimaryKey,
-      clearSecondaryKey,
-      clearAllKeys,
-      savePrimaryKey,
-      saveSecondaryKey,
+      saveApiKey,
+      clearApiKey,
       toggleAI,
       sendMessage,
       formatTime
@@ -661,10 +556,77 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 70px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .save-btn:hover {
   background: #22c55e;
+}
+
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.save-btn.error {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.save-btn.error:hover {
+  background: #dc2626;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.api-help-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.api-help-text ol {
+  margin: 8px 0;
+  padding-left: 16px;
+}
+
+.api-help-text li {
+  margin: 4px 0;
+}
+
+.api-help-text a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.api-help-text a:hover {
+  color: #93c5fd;
 }
 
 .chat-messages {
@@ -676,6 +638,110 @@ export default {
   min-height: 300px;
   max-height: 500px;
 }
+
+.chat-messages .chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+}
+
+.chat-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.config-btn {
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.config-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .ai-disabled-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    text-align: center;
+  }
+  
+  .disabled-message {
+    margin-bottom: 20px;
+  }
+  
+  .disabled-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .disabled-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+  }
+  
+  .disabled-subtitle {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+  
+  .disabled-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .activate-btn {
+    padding: 8px 16px;
+    background: #22c55e;
+    border: 1px solid #16a34a;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .activate-btn:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+  }
+  
+  .change-key-btn {
+    padding: 8px 16px;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 6px;
+    color: #60a5fa;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .change-key-btn:hover {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.6);
+    color: #93c5fd;
+  }
 
 .message {
   padding: 8px 12px;
@@ -898,106 +964,113 @@ export default {
   width: 100%;
 }
 
-.api-key-display {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  min-height: 40px;
+.api-input {
   width: 100%;
   max-width: 260px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 13px;
+  min-height: 40px;
+  transition: all 0.3s ease;
 }
 
-.api-key-masked {
-  flex: 1;
-  font-family: monospace;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
+.api-input:focus {
+  outline: none;
+  border-color: #4ade80;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.clear-btn {
-  padding: 8px 16px;
+.api-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.save-btn {
+  padding: 10px 16px;
   border-radius: 6px;
-  border: 1px solid rgba(239, 68, 68, 0.6);
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
+  border: 1px solid #4ade80;
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 70px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.clear-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.7);
+.save-btn:hover {
+  background: rgba(74, 222, 128, 0.3);
+  transform: translateY(-1px);
 }
 
-.status-indicator {
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.status-indicator.active {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.status-indicator:not(.active) {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.status-indicator.both-configured {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.status-indicator.primary-configured {
-  background: rgba(59, 130, 246, 0.2);
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-.status-indicator.secondary-only {
-  background: rgba(245, 158, 11, 0.2);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-
-.status-indicator.not-configured {
+.save-btn.error {
+  border-color: #ef4444;
   background: rgba(239, 68, 68, 0.2);
   color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-.clear-all-btn {
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(239, 68, 68, 0.5);
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.save-btn.error:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+
+
+
+
+.help-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.help-text strong {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.help-text em {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-top: 2px solid #f59e0b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.flex {
+  display: flex;
   width: 100%;
   max-width: 260px;
   margin: 0 auto;
 }
 
-.clear-all-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.7);
+.gap-2 {
+  gap: 8px;
 }
 
 .api-input {
