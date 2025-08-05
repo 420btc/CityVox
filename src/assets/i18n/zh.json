@@ -98,6 +98,26 @@
   "common": {
     "cancel": "取消"
   },
+  "ai": {
+    "title": "AI助手",
+    "enable": "启用AI",
+    "disable": "禁用AI",
+    "settings": "设置",
+    "apiConfig": "API配置",
+    "currentApiKey": "当前API密钥",
+    "newApiKey": "新API密钥",
+    "apiKeyPlaceholder": "输入您的OpenAI API密钥",
+    "apiKeyHelp": "您需要OpenAI API密钥才能使用AI",
+    "save": "保存",
+    "clear": "清除",
+    "status": "状态",
+    "configured": "已配置",
+    "notConfigured": "未配置",
+    "chatPlaceholder": "为AI输入消息...",
+    "send": "发送",
+    "processing": "处理中...",
+    "actionHistory": "操作历史"
+  },
   "dialog": {
     "selectTitle": "升级建筑",
     "selectMessage": "确定要升级 <span class=\"text-[#ff4402] font-bold\"> {building} </span>? 升级将花费 {cost} 金币。",

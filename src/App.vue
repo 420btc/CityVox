@@ -2,6 +2,7 @@
 import { eventBus } from '@/js/utils/event-bus.js'
 import { useGameState } from '@/stores/useGameState.js'
 import { onMounted, onUnmounted, ref } from 'vue'
+import AIChat from './components/AIChat.vue'
 import BuildingDetails from './components/BuildingDetails.vue'
 import BuildingSidebar from './components/BuildingSidebar.vue'
 import ConfirmDialog from './components/ConfirmDialog.vue'
@@ -146,6 +147,7 @@ onUnmounted(() => {
       :show="showIntro"
       @close="showIntro = false"
     />
+    <AIChat />
   </div>
   <GameCanvas />
 </template>

@@ -270,12 +270,28 @@ export const useGameState = defineStore('gameState', {
       this.selectedPosition = null
     },
     setTile(x, y, patch) {
-      // 合并 patch 到指定 tile
-      Object.assign(this.metadata[x][y], patch)
+      // Crear un nuevo objeto para disparar la reactividad
+      this.metadata[x][y] = { ...this.metadata[x][y], ...patch }
+      console.log(`GameState: Tile actualizado (${x}, ${y}):`, this.metadata[x][y])
+      
+      // Emitir evento personalizado para sincronización inmediata
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('tileUpdated', {
+          detail: { x, y, tileData: this.metadata[x][y] }
+        }))
+      }
     },
     updateTile(x, y, patch) {
       // 语义同 setTile，便于扩展
-      Object.assign(this.metadata[x][y], patch)
+      this.metadata[x][y] = { ...this.metadata[x][y], ...patch }
+      console.log(`GameState: Tile actualizado (${x}, ${y}):`, this.metadata[x][y])
+      
+      // Emitir evento personalizado para sincronización inmediata
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('tileUpdated', {
+          detail: { x, y, tileData: this.metadata[x][y] }
+        }))
+      }
     },
     getTile(x, y) {
       return this.metadata?.[x]?.[y] || null

@@ -108,6 +108,33 @@
     "demolishConfirm": "Confirm Demolition",
     "building": "building"
   },
+  "ai": {
+    "title": "AI Assistant",
+    "enable": "Enable AI",
+    "disable": "Disable AI",
+    "settings": "Settings",
+    "apiConfig": "API Configuration",
+    "primaryApiKey": "Primary API Key",
+    "secondaryApiKey": "Secondary API Key (Backup)",
+    "currentApiKey": "Current API Key",
+    "newApiKey": "New API Key",
+    "apiKeyPlaceholder": "Enter your OpenAI API key",
+    "apiKeySecondaryPlaceholder": "Backup API key (optional)",
+    "apiKeyHelp": "API keys are stored locally. If primary fails, secondary will be used automatically",
+    "save": "Save",
+    "clear": "Clear",
+    "clearAll": "Clear All",
+    "status": "Status",
+    "configured": "Configured",
+    "notConfigured": "Not configured",
+    "primaryConfigured": "Primary configured",
+    "bothConfigured": "Both configured",
+    "usingFallback": "Using backup",
+    "chatPlaceholder": "Type a message for the AI...",
+    "send": "Send",
+    "processing": "Processing...",
+    "actionHistory": "Action History"
+  },
   "error": {
     "insufficientFunds": "Insufficient funds"
   }

@@ -1,4 +1,5 @@
 import { DEG2RAD } from 'three/src/math/MathUtils.js'
+import * as THREE from 'three'
 import Experience from '../../../experience.js'
 import Building from '../building.js'
 
@@ -17,7 +18,32 @@ export default class Road extends Building {
     this.name = 'Road'
     this.style = 'straight' // 默认样式
     this.hideTerrain = true
-    this.mesh.position.set(0, 0.01, 0)
+    
+    // Inicializar con el modelo de carretera recta por defecto
+    this.initRoadModel()
+  }
+
+  // Sobrescribir initModel para evitar el comportamiento estándar de Building
+  initModel() {
+    // No hacer nada aquí, usaremos initRoadModel en su lugar
+  }
+
+  // Método específico para inicializar modelos de carretera
+  initRoadModel() {
+    const roadResource = this.resources.items['road'] // Usar 'road' en lugar de 'road_level1'
+    if (roadResource && roadResource.scene) {
+      const mesh = this.initMeshFromResource(roadResource)
+      mesh.position.set(0, 0.01, 0)
+      mesh.scale.set(0.98, 1, 0.98)
+      this.setMesh(mesh)
+    } else {
+      // Fallback si no se puede cargar el modelo
+      const geometry = new THREE.BoxGeometry(0.8, 0.1, 0.8)
+      const material = new THREE.MeshStandardMaterial({ color: '#666666' }) // Color gris para carreteras
+      const mesh = new THREE.Mesh(geometry, material)
+      mesh.position.set(0, 0.05, 0)
+      this.setMesh(mesh)
+    }
   }
 
   /**
