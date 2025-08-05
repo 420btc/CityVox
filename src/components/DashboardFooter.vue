@@ -1,16 +1,19 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGameState } from '../stores/useGameState'
 import AnimatedNumber from './AnimatedNumber.vue'
+import AchievementsModal from './AchievementsModal.vue'
 
 const gameState = useGameState()
 const { t } = useI18n()
 const { buildingCount, dailyIncome, pollution, stability } = storeToRefs(gameState)
 
+const showAchievementsModal = ref(false)
+
 function showAchievements() {
-  gameState.addToast(t('dashboardFooter.achievementLoading'), 'info')
+  showAchievementsModal.value = true
 }
 
 onMounted(() => {
@@ -151,5 +154,11 @@ const systemStatusList = computed(() => [
         </div>
       </div>
     </div>
+    
+    <!-- Modal de Logros -->
+    <AchievementsModal
+      :show="showAchievementsModal"
+      @close="showAchievementsModal = false"
+    />
   </footer>
 </template>
