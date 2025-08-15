@@ -66,6 +66,31 @@ function showGuideModal() {
 function toggleIntro() {
   eventBus.emit('ui:show-intro')
 }
+
+// Estado de vista aérea
+const isTopDownView = ref(false)
+
+// Toggle vista aérea cenital
+function toggleTopDownView() {
+  if (window.experience && window.experience.camera) {
+    if (isTopDownView.value) {
+      // Volver a vista normal (primer punto fijo)
+      window.experience.camera.animateTo(window.experience.camera.fixedPoints[0])
+      eventBus.emit('toast:add', {
+        message: language.value === 'zh' ? '📸 已切换到正常视图' : '📸 Vista normal activada',
+        type: 'info',
+      })
+    } else {
+      // Activar vista aérea
+      window.experience.camera.setTopDownView()
+      eventBus.emit('toast:add', {
+        message: language.value === 'zh' ? '📸 已切换到俯视图' : '📸 Vista aérea activada',
+        type: 'info',
+      })
+    }
+    isTopDownView.value = !isTopDownView.value
+  }
+}
 </script>
 
 <template>
@@ -160,7 +185,16 @@ function toggleIntro() {
           </button>
           
           <button
-            class="px-3 col-span-2 py-1 rounded bg-purple-600 text-white text-sm font-bold shadow hover:bg-purple-700 transition"
+            class="px-2 py-1 rounded text-white text-sm font-bold shadow transition"
+            :class="isTopDownView ? 'bg-green-600 hover:bg-green-700' : 'bg-orange-600 hover:bg-orange-700'"
+            @click="toggleTopDownView"
+            :title="language === 'zh' ? (isTopDownView ? '切换到正常视图' : '切换到俯视图') : (isTopDownView ? 'Vista normal' : 'Vista aérea cenital')"
+          >
+            {{ isTopDownView ? '📸✅' : '📸' }}
+          </button>
+          
+          <button
+            class="px-3 py-1 rounded bg-purple-600 text-white text-sm font-bold shadow hover:bg-purple-700 transition"
             @click="toggleIntro"
           >
             🎬 {{ language === 'zh' ? '介绍' : 'INTRO' }}

@@ -181,4 +181,14 @@ export default class Camera {
       },
     })
   }
+
+  /**
+   * Cambiar a vista aérea cenital (top-down view)
+   */
+  setTopDownView() {
+    if (this.isRotating) return  
+    // Posición directamente arriba del centro del mapa
+    const topDownPosition = new THREE.Vector3(8, 25, 8)
+    this.animateTo(topDownPosition)
+  }
 }
