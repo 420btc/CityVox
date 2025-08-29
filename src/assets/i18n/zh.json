@@ -130,7 +130,12 @@
     "generatedAssets": "已生成资源",
     "placeOnMap": "放置到地图",
     "download": "下载",
-    "remixSuggestions": "重新混合建议"
+    "remixSuggestions": "重新混合建议",
+    "convertTo3D": "转换为3D",
+    "converting": "转换中...",
+    "downloadGLB": "下载GLB",
+    "downloadPNG": "下载PNG",
+    "model3DAvailable": "3D模型可用"
   },
   "dialog": {
     "selectTitle": "升级建筑",

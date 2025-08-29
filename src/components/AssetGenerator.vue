@@ -109,15 +109,41 @@
               :class="{ selected: selectedAsset?.id === asset.id }"
               @click="selectAsset(asset)"
             >
-              <img :src="asset.imageUrl" :alt="asset.prompt" class="asset-image" />
+              <div class="asset-image-container">
+                <img :src="asset.imageUrl" :alt="asset.prompt" class="asset-image" />
+                <!-- Indicador 3D -->
+                <div v-if="asset.is3D" class="badge-3d">3D</div>
+              </div>
               <div class="asset-info">
                 <p class="asset-prompt">{{ asset.prompt }}</p>
+                <small v-if="asset.is3D" class="asset-3d-info">✨ Modelo 3D disponible</small>
                 <div class="asset-actions">
                   <button @click.stop="placeAssetOnMap(asset)" class="place-btn">
                     {{ $t('assetGenerator.placeOnMap') }}
                   </button>
+                  
+                  <!-- Botón Convertir a 3D -->
+                   <button
+                     v-if="hunyuan3DAvailable && !asset.is3D"
+                     @click.stop="convertTo3D(asset)"
+                     :disabled="isConverting3D"
+                     class="convert-3d-btn"
+                     :title="isConverting3D ? 'Convirtiendo a 3D... Esto puede tomar 1-2 minutos' : 'Convertir imagen a modelo 3D GLB'"
+                   >
+                     {{ isConverting3D ? 'Convirtiendo... (1-2 min)' : 'Convertir a 3D' }}
+                   </button>
+                  
+                  <!-- Botón Descargar GLB (solo si ya es 3D) -->
+                  <button
+                    v-if="asset.is3D && asset.glbUrl"
+                    @click.stop="downloadGLB(asset)"
+                    class="download-glb-btn"
+                  >
+                    Descargar GLB
+                  </button>
+                  
                   <button @click.stop="downloadAsset(asset)" class="download-btn">
-                    {{ $t('assetGenerator.download') }}
+                    {{ asset.is3D ? 'Descargar PNG' : $t('assetGenerator.download') }}
                   </button>
                 </div>
               </div>
@@ -146,9 +172,10 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { generateImageWithPrompt, generateImageFromText, getRemixSuggestions } from '@/services/geminiService'
+import { convertImageToGameAsset, checkHunyuan3DAvailability } from '@/services/hunyuan3dService'
 import { useGameState } from '@/stores/useGameState'
 
 export default {
@@ -174,6 +201,8 @@ export default {
     const generatedAssets = ref([])
     const selectedAsset = ref(null)
     const nextAssetId = ref(1)
+    const isConverting3D = ref(false)
+    const hunyuan3DAvailable = ref(false)
     
     // Prompts específicos para CubeCity
     const BUILDING_PROMPT_TEMPLATE = (input) => 
@@ -392,6 +421,76 @@ export default {
       link.click()
     }
     
+    // Convertir asset a modelo 3D
+    const convertTo3D = async (asset) => {
+      if (!hunyuan3DAvailable.value) {
+        alert('Servicio Hunyuan3D no disponible')
+        return
+      }
+
+      isConverting3D.value = true
+      
+      try {
+        // Convertir la imagen a blob
+        const response = await fetch(asset.imageUrl)
+        const imageBlob = await response.blob()
+        
+        // Crear archivo con nombre apropiado
+        const imageFile = new File([imageBlob], 'asset.png', { type: 'image/png' })
+        
+        // Convertir a modelo 3D
+        const result = await convertImageToGameAsset(imageFile, asset.prompt)
+        
+        // Crear URL para descarga del modelo GLB
+        const glbUrl = URL.createObjectURL(result.glbBlob)
+        
+        // Actualizar el asset con el modelo 3D
+        const updatedAsset = {
+          ...asset,
+          glbUrl: glbUrl,
+          glbFileName: result.fileName,
+          meshStats: result.meshStats,
+          seed3D: result.seed,
+          is3D: true
+        }
+        
+        // Actualizar en la lista
+        const index = generatedAssets.value.findIndex(a => a.id === asset.id)
+        if (index !== -1) {
+          generatedAssets.value[index] = updatedAsset
+        }
+        
+        alert(`¡Modelo 3D generado exitosamente!\n\nArchivo: ${result.fileName}\n\nNota: El modelo usa configuración rápida para evitar timeouts. Para mayor calidad, puedes descargar el GLB y procesarlo externamente.`)
+        
+      } catch (error) {
+        console.error('Error convirtiendo a 3D:', error)
+        alert(`Error al convertir a 3D: ${error.message}`)
+      } finally {
+        isConverting3D.value = false
+      }
+    }
+
+    // Descargar modelo GLB
+    const downloadGLB = (asset) => {
+      if (!asset.glbUrl) return
+      
+      const link = document.createElement('a')
+      link.href = asset.glbUrl
+      link.download = asset.glbFileName || `${asset.prompt.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_3d.glb`
+      link.click()
+    }
+    
+    // Verificar disponibilidad de Hunyuan3D al montar
+    onMounted(async () => {
+      try {
+        hunyuan3DAvailable.value = await checkHunyuan3DAvailability()
+        console.log('Hunyuan3D disponible:', hunyuan3DAvailable.value)
+      } catch (error) {
+        console.error('Error verificando Hunyuan3D:', error)
+        hunyuan3DAvailable.value = false
+      }
+    })
+    
     return {
       activeTab,
       textInput,
@@ -401,6 +500,8 @@ export default {
       isGenerating,
       generatedAssets,
       selectedAsset,
+      isConverting3D,
+      hunyuan3DAvailable,
       closeModal,
       handleFileUpload,
       handleDrop,
@@ -409,7 +510,9 @@ export default {
       remixAsset,
       selectAsset,
       placeAssetOnMap,
-      downloadAsset
+      downloadAsset,
+      convertTo3D,
+      downloadGLB
     }
   }
 }
@@ -620,10 +723,37 @@ export default {
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
-.asset-image {
+.asset-image-container {
+  position: relative;
   width: 100%;
   height: 150px;
+}
+
+.asset-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+.badge-3d {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: linear-gradient(45deg, #9333ea, #4f46e5);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+.asset-3d-info {
+  color: #9333ea;
+  font-weight: 500;
+  display: block;
+  margin-top: 4px;
 }
 
 .asset-info {
@@ -668,6 +798,43 @@ export default {
 
 .download-btn:hover {
   background: #f8f9fa;
+}
+
+.convert-3d-btn {
+  flex: 1;
+  padding: 6px 12px;
+  border: 1px solid #9333ea;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #9333ea;
+  color: white;
+}
+
+.convert-3d-btn:hover:not(:disabled) {
+  background: #7c3aed;
+}
+
+.convert-3d-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.download-glb-btn {
+  flex: 1;
+  padding: 6px 12px;
+  border: 1px solid #4f46e5;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #4f46e5;
+  color: white;
+}
+
+.download-glb-btn:hover {
+  background: #4338ca;
 }
 
 .remix-section h3 {

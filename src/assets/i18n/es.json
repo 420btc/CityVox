@@ -328,7 +328,12 @@
     "generatedAssets": "Assets Generados",
     "placeOnMap": "Colocar en Mapa",
     "download": "Descargar",
-    "remixSuggestions": "Sugerencias de Remix"
+    "remixSuggestions": "Sugerencias de Remix",
+    "convertTo3D": "Convertir a 3D",
+    "converting": "Convirtiendo...",
+    "downloadGLB": "Descargar GLB",
+    "downloadPNG": "Descargar PNG",
+    "model3DAvailable": "Modelo 3D disponible"
   },
   "defaults": {
     "title": "Título",
