@@ -34,7 +34,8 @@ export function handleSelectMode(ctx, tile) {
  * @param {object} tile - 选中的地块
  */
 export function handleBuildMode(ctx, tile) {
-  const buildingTypeToBuild = ctx.gameState.selectedBuilding?.type
+  const selectedBuilding = ctx.gameState.selectedBuilding
+  const buildingTypeToBuild = selectedBuilding?.type
   const buildingLevelToBuild = 1
   if (!tile)
     return
@@ -45,23 +46,66 @@ export function handleBuildMode(ctx, tile) {
     showToast('error', 'No se puede construir aquí, selecciona una casilla válida.')
     return
   }
-  // 通过 Pinia 修改 metadata
+
+  // Manejar assets personalizados
+  if (buildingTypeToBuild === 'custom_asset') {
+    const assetData = selectedBuilding.assetData
+    if (!assetData) {
+      showToast('error', 'Datos del asset personalizado no encontrados.')
+      return
+    }
+
+    // Costo fijo para assets personalizados
+    const cost = 100
+    if (ctx.gameState.credits < cost) {
+      showToast('error', 'Fondos insuficientes, no se puede construir.')
+      return
+    }
+
+    // Actualizar metadata para asset personalizado
+    ctx.gameState.setTile(x, y, {
+      type: 'ground',
+      building: buildingTypeToBuild,
+      direction: 0,
+      level: buildingLevelToBuild,
+      detail: {
+        name: assetData.prompt || 'Custom Asset',
+        cost: cost,
+        description: 'Edificio personalizado generado con IA'
+      },
+      outputFactor: 1,
+    })
+
+    ctx.gameState.updateCredits(-cost)
+
+    // Crear el building con los datos del asset
+    tile.setCustomBuilding(buildingTypeToBuild, buildingLevelToBuild, 0, assetData)
+    tile.setType('ground')
+    
+    showToast('success', `Asset personalizado "${assetData.prompt}" colocado exitosamente.`)
+    
+    // Limpiar selección después de colocar
+    ctx.gameState.setSelectedBuilding(null)
+    return
+  }
+
+  // Lógica normal para edificios regulares
   ctx.gameState.setTile(x, y, {
     type: 'ground',
     building: buildingTypeToBuild,
-    direction: 0, // 可根据实际情况
+    direction: 0,
     level: buildingLevelToBuild,
-    // 新增建筑详情
     detail: BUILDING_DATA[buildingTypeToBuild]?.levels[buildingLevelToBuild],
-    // 产出因子 可能因为某些因素而影响产出，比如人口、科技等
     outputFactor: 1,
   })
-  if (ctx.gameState.credits < BUILDING_DATA[buildingTypeToBuild]?.levels[buildingLevelToBuild]?.cost) {
+  
+  const cost = BUILDING_DATA[buildingTypeToBuild]?.levels[buildingLevelToBuild]?.cost || 0
+  if (ctx.gameState.credits < cost) {
     showToast('error', 'Fondos insuficientes, no se puede construir.')
     return
   }
-  ctx.gameState.updateCredits(-BUILDING_DATA[buildingTypeToBuild]?.levels[buildingLevelToBuild]?.cost)
-  // ...后续同步 Three.js 层刷新
+  
+  ctx.gameState.updateCredits(-cost)
   tile.setBuilding(buildingTypeToBuild, buildingLevelToBuild, 0)
   tile.setType('ground')
   updateAdjacentRoads(tile, ctx.experience.world.city)

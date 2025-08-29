@@ -91,6 +91,23 @@ export default class Tile extends SimObject {
     }
   }
 
+  // 创建y添加asset personalizado
+  setCustomBuilding(type, level = 1, direction = 0, assetData) {
+    this.removeBuilding()
+    const options = {
+      assetData: assetData,
+      imageUrl: assetData.imageUrl,
+      processedImage: assetData.processedImage,
+      prompt: assetData.prompt,
+      position: { x: this.x, y: this.y }
+    }
+    const buildingInstance = createBuilding(type, level, direction, options)
+    if (buildingInstance) {
+      this.buildingInstance = buildingInstance
+      this.grassMesh.add(buildingInstance)
+    }
+  }
+
   // 移除原有建筑实例
   removeBuilding() {
     if (this.buildingInstance) {

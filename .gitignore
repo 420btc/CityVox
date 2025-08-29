@@ -30,6 +30,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+.env.example
 
 # editor directories and files
 .vscode/*
@@ -40,3 +42,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+.env

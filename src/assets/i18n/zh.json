@@ -118,6 +118,20 @@
     "processing": "处理中...",
     "actionHistory": "操作历史"
   },
+  "assetGenerator": {
+    "title": "资源生成器",
+    "textTab": "文本",
+    "imageTab": "图像",
+    "textPlaceholder": "描述你想创建的建筑...",
+    "imagePromptPlaceholder": "描述如何转换这张图片...",
+    "dropImage": "拖拽图片到这里或点击上传",
+    "generate": "生成",
+    "generating": "生成中...",
+    "generatedAssets": "已生成资源",
+    "placeOnMap": "放置到地图",
+    "download": "下载",
+    "remixSuggestions": "重新混合建议"
+  },
   "dialog": {
     "selectTitle": "升级建筑",
     "selectMessage": "确定要升级 <span class=\"text-[#ff4402] font-bold\"> {building} </span>? 升级将花费 {cost} 金币。",

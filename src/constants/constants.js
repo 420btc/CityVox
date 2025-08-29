@@ -575,6 +575,28 @@ export const BUILDING_DATA = {
       },
     },
   },
+
+  custom_asset: {
+    name: { zh: '自定义建筑', en: 'Custom Asset', es: 'Edificio Personalizado' },
+    type: 'custom_asset',
+    icon: '🎨',
+    buildingType: { zh: '自定义建筑', en: 'Custom Building', es: 'Edificio Personalizado' },
+    category: 'social',
+    levels: {
+      1: {
+        displayName: { zh: '自定义建筑', en: 'Custom Asset', es: 'Edificio Personalizado' },
+        cost: 100,
+        powerUsage: 5,
+        pollution: 0,
+        population: 0,
+        coinOutput: 0,
+        upgradeCost: null,
+        nextLevel: null,
+        visible: false, // 不在建筑面板中显示
+        category: 'social',
+      },
+    },
+  },
 }
 // 操作模式常量
 export const BUILDING_MODES = [

@@ -1,4 +1,5 @@
 import ChemistryFactory from './buildings/chemistry-factory.js'
+import CustomAsset from './buildings/custom-asset.js'
 import Factory from './buildings/factory.js'
 import FireStation from './buildings/fire_station.js'
 import GarbageStation from './buildings/garbage_station.js'
@@ -35,6 +36,7 @@ const BUILDING_CLASS_MAP = {
   wind_power: WindPower,
   garbage_station: GarbageStation,
   hero_park: HeroPark,
+  custom_asset: CustomAsset,
   // 其他建筑类型可在此扩展
 }
 

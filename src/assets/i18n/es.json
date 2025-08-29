@@ -316,6 +316,20 @@
     "processing": "Procesando...",
     "actionHistory": "Historial de Acciones de la IA"
   },
+  "assetGenerator": {
+    "title": "Generador de Assets",
+    "textTab": "Texto",
+    "imageTab": "Imagen",
+    "textPlaceholder": "Describe el edificio que quieres crear...",
+    "imagePromptPlaceholder": "Describe cómo transformar esta imagen...",
+    "dropImage": "Arrastra una imagen aquí o haz clic para subir",
+    "generate": "Generar",
+    "generating": "Generando...",
+    "generatedAssets": "Assets Generados",
+    "placeOnMap": "Colocar en Mapa",
+    "download": "Descargar",
+    "remixSuggestions": "Sugerencias de Remix"
+  },
   "defaults": {
     "title": "Título",
     "message": "Sin mensaje",

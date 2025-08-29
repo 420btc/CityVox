@@ -23,6 +23,9 @@ export default class World {
     // Configurar listener para eventos de tile inmediatos
     this.setupTileEventListener()
     
+    // Configurar listener para assets personalizados
+    this.setupCustomAssetListener()
+    
     // Environment
     this.resources.on('ready', () => {
       // Setup
@@ -172,9 +175,43 @@ export default class World {
     console.log(`World: Tile sincronizado: (${x}, ${y}) - ${tileData.building || 'vacío'}`)
     
     // Forzar renderizado inmediato
-    if (this.experience && this.experience.renderer) {
-      this.experience.renderer.render()
+    if (this.experience && this.experience.renderer && this.experience.renderer.update) {
+      this.experience.renderer.update()
     }
+  }
+
+  /**
+   * Configurar listener para colocación de assets personalizados
+   */
+  setupCustomAssetListener() {
+    const { eventBus } = this.experience
+    
+    eventBus.on('game:place-custom-asset', (assetData) => {
+      console.log('World: Recibido evento para colocar asset personalizado:', assetData)
+      this.placeCustomAsset(assetData)
+    })
+  }
+
+  /**
+   * Colocar un asset personalizado en el mapa
+   */
+  placeCustomAsset(assetData) {
+    // Cambiar el modo del juego a construcción
+    this.gameState.setMode('build')
+    
+    // Configurar el asset personalizado como edificio seleccionado
+    this.gameState.setSelectedBuilding({
+      type: 'custom_asset',
+      level: 1,
+      assetData: assetData
+    })
+    
+    // Mostrar mensaje al usuario
+    const { eventBus } = this.experience
+    eventBus.emit('toast:add', {
+      message: 'Asset personalizado listo para colocar. Haz clic en una casilla vacía.',
+      type: 'info'
+    })
   }
 
   update() {

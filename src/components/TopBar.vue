@@ -67,6 +67,11 @@ function toggleIntro() {
   eventBus.emit('ui:show-intro')
 }
 
+// 显示Asset Generator
+function showAssetGenerator() {
+  eventBus.emit('ui:show-asset-generator')
+}
+
 // Estado de vista aérea
 const isTopDownView = ref(false)
 
@@ -174,8 +179,8 @@ function toggleTopDownView() {
           </div>
         </div>
 
-        <!-- 按钮区域 - 两列布局 -->
-        <div class="grid grid-cols-3 gap-2">
+        <!-- 按钮区域 - 四列布局 -->
+        <div class="grid grid-cols-4 gap-2">
           <!-- 第一行 -->
           <button
             class="px-3 py-1 rounded bg-industrial-green text-white text-sm font-bold shadow hover:bg-industrial-green/80 transition"
@@ -198,6 +203,14 @@ function toggleTopDownView() {
             @click="toggleIntro"
           >
             🎬 {{ language === 'zh' ? '介绍' : 'INTRO' }}
+          </button>
+          
+          <button
+            class="px-2 py-1 rounded bg-blue-600 text-white text-sm font-bold shadow hover:bg-blue-700 transition"
+            @click="showAssetGenerator"
+            :title="language === 'zh' ? '生成自定义建筑' : 'Generar edificios personalizados'"
+          >
+            🎨 {{ language === 'zh' ? 'AI' : 'AI' }}
           </button>
 
           <!-- 第二行 -->
@@ -240,11 +253,15 @@ function toggleTopDownView() {
           </div>
 
           <button
-            class="px-3 col-span-2 py-1 rounded bg-industrial-accent text-white text-sm font-bold shadow hover:bg-industrial-accent/80 transition"
+            class="px-3 py-1 rounded bg-industrial-accent text-white text-sm font-bold shadow hover:bg-industrial-accent/80 transition"
             @click="toggleMapOverview"
           >
             {{ language === 'zh' ? (showMapOverview ? '🗺️ 隐藏' : '🗺️ 地图') : (showMapOverview ? '🗺️ Ocultar' : '🗺️ Mapa') }}
           </button>
+          
+          <div></div>
+          
+          <div></div>
         </div>
       </div>
     </div>

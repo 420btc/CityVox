@@ -3,6 +3,7 @@ import { eventBus } from '@/js/utils/event-bus.js'
 import { useGameState } from '@/stores/useGameState.js'
 import { onMounted, onUnmounted, ref } from 'vue'
 import AIChat from './components/AIChat.vue'
+import AssetGenerator from './components/AssetGenerator.vue'
 import BuildingDetails from './components/BuildingDetails.vue'
 import BuildingSidebar from './components/BuildingSidebar.vue'
 import ConfirmDialog from './components/ConfirmDialog.vue'
@@ -20,6 +21,7 @@ import { useBuilding } from './hooks/useBuilding.js'
 const showDialog = ref(false)
 const dialogData = ref({})
 const showIntro = ref(false)
+const showAssetGenerator = ref(false)
 const { getDialogConfig, handleBuildingTransaction } = useBuilding()
 const gameState = useGameState()
 
@@ -63,6 +65,9 @@ if (!window.__confirmDialogListenerAdded) {
   eventBus.on('ui:show-intro', () => {
     showIntro.value = true
   })
+  eventBus.on('ui:show-asset-generator', () => {
+    showAssetGenerator.value = true
+  })
   window.__confirmDialogListenerAdded = true
 }
 
@@ -76,6 +81,16 @@ function handleConfirm() {
 
 function handleCancel() {
   showDialog.value = false
+}
+
+function handleAssetGeneratorClose() {
+  showAssetGenerator.value = false
+}
+
+function handleAssetGenerated(asset) {
+  // Emit event to place the generated asset on the map
+  eventBus.emit('game:place-custom-asset', asset)
+  showAssetGenerator.value = false
 }
 
 // ESC关闭地图总览
@@ -146,6 +161,11 @@ onUnmounted(() => {
     <IntroModal
       :show="showIntro"
       @close="showIntro = false"
+    />
+    <AssetGenerator
+      :is-visible="showAssetGenerator"
+      @close="handleAssetGeneratorClose"
+      @asset-generated="handleAssetGenerated"
     />
     <AIChat />
   </div>

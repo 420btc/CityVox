@@ -135,6 +135,20 @@
     "processing": "Processing...",
     "actionHistory": "Action History"
   },
+  "assetGenerator": {
+    "title": "Asset Generator",
+    "textTab": "Text",
+    "imageTab": "Image",
+    "textPlaceholder": "Describe the building you want to create...",
+    "imagePromptPlaceholder": "Describe how to transform this image...",
+    "dropImage": "Drop an image here or click to upload",
+    "generate": "Generate",
+    "generating": "Generating...",
+    "generatedAssets": "Generated Assets",
+    "placeOnMap": "Place on Map",
+    "download": "Download",
+    "remixSuggestions": "Remix Suggestions"
+  },
   "error": {
     "insufficientFunds": "Insufficient funds"
   }
