@@ -113,6 +113,8 @@
                 <img :src="asset.imageUrl" :alt="asset.prompt" class="asset-image" />
                 <!-- Indicador 3D -->
                 <div v-if="asset.is3D" class="badge-3d">3D</div>
+                <!-- Indicador de tiempo de generación -->
+                <div v-if="asset.generationTime" class="generation-time-badge">{{ asset.generationTime }}s</div>
               </div>
               <div class="asset-info">
                 <p class="asset-prompt">{{ asset.prompt }}</p>
@@ -245,6 +247,7 @@ export default {
       if (!textInput.value.trim() || isGenerating.value) return
       
       isGenerating.value = true
+      const startTime = Date.now()
       try {
         const prompt = BUILDING_PROMPT_TEMPLATE(textInput.value.trim())
         const { imageUrl } = await generateImageFromText(prompt)
@@ -256,6 +259,8 @@ export default {
           const file = new File([blob], 'generated-asset.png', { type: 'image/png' })
           
           const suggestions = await getRemixSuggestions(file, REMIX_SUGGESTION_PROMPT)
+          const endTime = Date.now()
+          const generationTime = Math.round((endTime - startTime) / 1000)
           
           const asset = {
             id: nextAssetId.value++,
@@ -263,7 +268,8 @@ export default {
             prompt: textInput.value.trim(),
             type: 'text-generated',
             suggestions,
-            processedImage: null
+            processedImage: null,
+            generationTime: generationTime
           }
           
           generatedAssets.value.push(asset)
@@ -282,6 +288,7 @@ export default {
       if (!selectedFile.value || !imagePrompt.value.trim() || isGenerating.value) return
       
       isGenerating.value = true
+      const startTime = Date.now()
       try {
         const prompt = `${imagePrompt.value.trim()}. Keep it as 3D isometric pixel art on white background. No drop shadow.`
         const { imageUrl } = await generateImageWithPrompt(selectedFile.value, prompt)
@@ -293,6 +300,8 @@ export default {
           const file = new File([blob], 'generated-asset.png', { type: 'image/png' })
           
           const suggestions = await getRemixSuggestions(file, REMIX_SUGGESTION_PROMPT)
+          const endTime = Date.now()
+          const generationTime = Math.round((endTime - startTime) / 1000)
           
           const asset = {
             id: nextAssetId.value++,
@@ -300,7 +309,8 @@ export default {
             prompt: imagePrompt.value.trim(),
             type: 'image-generated',
             suggestions,
-            processedImage: null
+            processedImage: null,
+            generationTime: generationTime
           }
           
           generatedAssets.value.push(asset)
@@ -319,6 +329,7 @@ export default {
       if (isGenerating.value) return
       
       isGenerating.value = true
+      const startTime = Date.now()
       try {
         // Convertir la imagen a File
         const response = await fetch(asset.imageUrl)
@@ -329,13 +340,17 @@ export default {
         const { imageUrl } = await generateImageWithPrompt(file, prompt)
         
         if (imageUrl) {
+          const endTime = Date.now()
+          const generationTime = Math.round((endTime - startTime) / 1000)
+          
           const newAsset = {
             id: nextAssetId.value++,
             imageUrl,
             prompt: `${asset.prompt} - ${suggestion}`,
             type: 'remix',
             suggestions: asset.suggestions,
-            processedImage: null
+            processedImage: null,
+            generationTime: generationTime
           }
           
           generatedAssets.value.push(newAsset)
@@ -700,8 +715,10 @@ export default {
 
 .assets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .asset-item {
@@ -724,15 +741,21 @@ export default {
 }
 
 .asset-image-container {
-  position: relative;
-  width: 100%;
-  height: 150px;
-}
+       position: relative;
+       width: 100%;
+       height: 260px;
+       padding: 20px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
 
 .asset-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 2px solid transparent;
 }
 
 .badge-3d {
@@ -749,6 +772,20 @@ export default {
   z-index: 1;
 }
 
+.generation-time-badge {
+   position: absolute;
+   top: 4px;
+   right: 4px;
+   background: rgba(0, 0, 0, 0.7);
+   color: white;
+   font-size: 10px;
+   font-weight: bold;
+   padding: 2px 6px;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+   z-index: 1;
+ }
+
 .asset-3d-info {
   color: #9333ea;
   font-weight: 500;
@@ -757,7 +794,7 @@ export default {
 }
 
 .asset-info {
-  padding: 12px;
+  padding: 16px;
 }
 
 .asset-prompt {
@@ -768,18 +805,23 @@ export default {
 }
 
 .asset-actions {
-  display: flex;
-  gap: 8px;
-}
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+    min-height: 60px;
+    align-content: flex-start;
+  }
 
 .place-btn, .download-btn {
   flex: 1;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border: 1px solid #007bff;
-  border-radius: 4px;
-  font-size: 12px;
+  border-radius: 3px;
+  font-size: 11px;
   cursor: pointer;
   transition: all 0.2s;
+  min-width: 70px;
 }
 
 .place-btn {
@@ -801,41 +843,43 @@ export default {
 }
 
 .convert-3d-btn {
-  flex: 1;
-  padding: 6px 12px;
-  border: 1px solid #9333ea;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: #9333ea;
-  color: white;
-}
-
-.convert-3d-btn:hover:not(:disabled) {
-  background: #7c3aed;
-}
-
-.convert-3d-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.download-glb-btn {
-  flex: 1;
-  padding: 6px 12px;
-  border: 1px solid #4f46e5;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: #4f46e5;
-  color: white;
-}
-
-.download-glb-btn:hover {
-  background: #4338ca;
-}
+    flex: 1;
+    padding: 4px 8px;
+    border: 1px solid #9333ea;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #9333ea;
+    color: white;
+    min-width: 70px;
+  }
+  
+  .convert-3d-btn:hover:not(:disabled) {
+    background: #7c3aed;
+  }
+  
+  .convert-3d-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .download-glb-btn {
+    flex: 1;
+    padding: 4px 8px;
+    border: 1px solid #4f46e5;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #4f46e5;
+    color: white;
+    min-width: 70px;
+  }
+  
+  .download-glb-btn:hover {
+    background: #4338ca;
+  }
 
 .remix-section h3 {
   margin-bottom: 16px;
