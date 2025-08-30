@@ -157,6 +157,52 @@ export const BUILDING_DATA = {
     },
   },
 
+  bluehouse: {
+    name: { zh: '蓝色住宅', en: 'Blue House', es: 'Casa Azul' },
+    type: 'bluehouse',
+    icon: '🏘️',
+    buildingType: { zh: '住宅建筑', en: 'Residential Building', es: 'Edificio Residencial' },
+    category: 'residential',
+    levels: {
+      1: {
+        displayName: { zh: '蓝色住宅', en: 'Blue House', es: 'Casa Azul' },
+        cost: 350,
+        maxPopulation: 35,
+        powerUsage: 9,
+        pollution: 1,
+        coinOutput: 6,
+        upgradeCost: 700,
+        nextLevel: 2,
+        visible: true,
+        category: 'residential',
+      },
+      2: {
+        displayName: { zh: '高级蓝色住宅', en: 'Advanced Blue House', es: 'Casa Azul Avanzada' },
+        cost: 700,
+        maxPopulation: 85,
+        powerUsage: 14,
+        pollution: 2,
+        coinOutput: 13,
+        upgradeCost: 1400,
+        nextLevel: 3,
+        visible: false,
+        category: 'residential',
+      },
+      3: {
+        displayName: { zh: '豪华蓝色住宅', en: 'Luxury Blue House', es: 'Casa Azul de Lujo' },
+        cost: 1400,
+        maxPopulation: 140,
+        powerUsage: 22,
+        pollution: 4,
+        coinOutput: 28,
+        upgradeCost: null,
+        nextLevel: null,
+        visible: false,
+        category: 'residential',
+      },
+    },
+  },
+
   // ===================== 工业建筑 =====================
   factory: {
     name: { zh: '工厂', en: 'Factory', es: 'Fábrica' },

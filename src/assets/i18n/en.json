@@ -148,11 +148,12 @@
     "placeOnMap": "Place on Map",
     "download": "Download",
     "remixSuggestions": "Remix Suggestions",
-    "convertTo3D": "Convert to 3D",
-    "converting": "Converting...",
-    "downloadGLB": "Download GLB",
-    "downloadPNG": "Download PNG",
-    "model3DAvailable": "3D Model Available"
+    "convertTo3D": "Convert to 3D (fal.ai)",
+      "converting": "Converting with fal.ai...",
+      "downloadGLB": "Download GLB",
+      "downloadPNG": "Download PNG",
+      "model3DAvailable": "3D Model Available",
+      "falaiService": "fal.ai Service"
   },
   "error": {
     "insufficientFunds": "Insufficient funds"

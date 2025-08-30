@@ -14,6 +14,7 @@ export default class CustomAsset extends Building {
     this.imageUrl = options.imageUrl || null
     this.processedImage = options.processedImage || null
     this.glbUrl = options.glbUrl || null
+    this.glbBlob = options.glbBlob || null
     this.is3D = options.is3D || false
     this.prompt = options.prompt || 'Custom Asset'
     
@@ -25,8 +26,12 @@ export default class CustomAsset extends Building {
 
   // Sobrescribir initModel para usar modelo 3D o imagen
   initModel() {
-    if (this.is3D && this.glbUrl) {
-      this.loadGLBModel(this.glbUrl)
+    if (this.is3D && (this.glbBlob || this.glbUrl)) {
+      if (this.glbBlob) {
+        this.loadGLBFromBlob(this.glbBlob)
+      } else {
+        this.loadGLBModel(this.glbUrl)
+      }
     } else if (this.processedImage) {
       this.createMeshFromImage(this.processedImage)
     } else if (this.imageUrl) {
@@ -163,7 +168,76 @@ export default class CustomAsset extends Building {
   }
 
   /**
-   * Cargar modelo GLB 3D
+   * Cargar modelo GLB desde Blob
+   */
+  loadGLBFromBlob(glbBlob) {
+    const loader = new GLTFLoader()
+    
+    // Crear URL temporal desde el Blob
+    const blobUrl = URL.createObjectURL(glbBlob)
+    
+    loader.load(
+      blobUrl,
+      (gltf) => {
+        console.log('CustomAsset: Modelo GLB cargado desde Blob exitosamente')
+        
+        // Limpiar la URL temporal
+        URL.revokeObjectURL(blobUrl)
+        
+        const model = gltf.scene
+        
+        // Escalar el modelo para que se ajuste al tamaño del tile
+        const box = new THREE.Box3().setFromObject(model)
+        const size = box.getSize(new THREE.Vector3())
+        const maxDimension = Math.max(size.x, size.y, size.z)
+        
+        // Escalar para que el modelo tenga un tamaño apropiado (0.8 unidades máximo)
+        const scale = 0.8 / maxDimension
+        model.scale.setScalar(scale)
+        
+        // Centrar el modelo
+        const center = box.getCenter(new THREE.Vector3())
+        model.position.set(-center.x * scale, 0, -center.z * scale)
+        
+        // Aplicar rotación según la dirección
+        const angle = (this.direction % 4) * 90
+        model.rotation.y = THREE.MathUtils.degToRad(angle)
+        
+        // Prohibir que el modelo sea seleccionado directamente
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.raycast = () => {}
+            // Asegurar que las texturas se vean correctamente
+            if (child.material) {
+              child.material.needsUpdate = true
+            }
+          }
+        })
+        
+        this.setMesh(model)
+      },
+      (progress) => {
+        console.log('CustomAsset: Cargando GLB desde Blob...', (progress.loaded / progress.total * 100) + '%')
+      },
+      (error) => {
+        console.error('Error cargando modelo GLB desde Blob:', error)
+        // Limpiar la URL temporal en caso de error
+        URL.revokeObjectURL(blobUrl)
+        
+        // Fallback a imagen si el GLB falla
+        if (this.processedImage) {
+          this.createMeshFromImage(this.processedImage)
+        } else if (this.imageUrl) {
+          this.createMeshFromImageUrl(this.imageUrl)
+        } else {
+          this.createFallbackMesh()
+        }
+      }
+    )
+  }
+
+  /**
+   * Cargar modelo GLB 3D desde URL
    */
   loadGLBModel(glbUrl) {
     const loader = new GLTFLoader()

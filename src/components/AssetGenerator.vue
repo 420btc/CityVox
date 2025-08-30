@@ -126,11 +126,11 @@
                   
                   <!-- Botón Convertir a 3D -->
                    <button
-                     v-if="hunyuan3DAvailable && !asset.is3D"
+                     v-if="falAvailable && !asset.is3D"
                      @click.stop="convertTo3D(asset)"
                      :disabled="isConverting3D"
                      class="convert-3d-btn"
-                     :title="isConverting3D ? 'Convirtiendo a 3D... Esto puede tomar 1-2 minutos' : 'Convertir imagen a modelo 3D GLB'"
+                     :title="isConverting3D ? 'Convirtiendo a 3D con fal.ai... Esto puede tomar 1-2 minutos' : 'Convertir imagen a modelo 3D GLB con fal.ai'"
                    >
                      {{ isConverting3D ? 'Convirtiendo... (1-2 min)' : 'Convertir a 3D' }}
                    </button>
@@ -177,7 +177,7 @@
 import { ref, computed, watch, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { generateImageWithPrompt, generateImageFromText, getRemixSuggestions } from '@/services/geminiService'
-import { convertImageToGameAsset, checkHunyuan3DAvailability } from '@/services/hunyuan3dService'
+import { convertImageToGameAsset, checkFalAvailability } from '@/services/falService'
 import { useGameState } from '@/stores/useGameState'
 
 export default {
@@ -204,7 +204,7 @@ export default {
     const selectedAsset = ref(null)
     const nextAssetId = ref(1)
     const isConverting3D = ref(false)
-    const hunyuan3DAvailable = ref(false)
+    const falAvailable = ref(false)
     
     // Prompts específicos para CubeCity
     const BUILDING_PROMPT_TEMPLATE = (input) => 
@@ -438,8 +438,8 @@ export default {
     
     // Convertir asset a modelo 3D
     const convertTo3D = async (asset) => {
-      if (!hunyuan3DAvailable.value) {
-        alert('Servicio Hunyuan3D no disponible')
+      if (!falAvailable.value) {
+        alert('Servicio fal.ai no disponible')
         return
       }
 
@@ -463,6 +463,7 @@ export default {
         const updatedAsset = {
           ...asset,
           glbUrl: glbUrl,
+          glbBlob: result.glbBlob, // Almacenar el blob directamente
           glbFileName: result.fileName,
           meshStats: result.meshStats,
           seed3D: result.seed,
@@ -475,7 +476,7 @@ export default {
           generatedAssets.value[index] = updatedAsset
         }
         
-        alert(`¡Modelo 3D generado exitosamente!\n\nArchivo: ${result.fileName}\n\nNota: El modelo usa configuración rápida para evitar timeouts. Para mayor calidad, puedes descargar el GLB y procesarlo externamente.`)
+        alert(`¡Modelo 3D generado exitosamente con fal.ai!\n\nArchivo: ${result.fileName}\n\nTamaño: ${(result.fileSize / 1024 / 1024).toFixed(2)} MB\n\nEl modelo GLB está listo para usar en el juego.`)
         
       } catch (error) {
         console.error('Error convirtiendo a 3D:', error)
@@ -495,14 +496,14 @@ export default {
       link.click()
     }
     
-    // Verificar disponibilidad de Hunyuan3D al montar
+    // Verificar disponibilidad de fal.ai al montar
     onMounted(async () => {
       try {
-        hunyuan3DAvailable.value = await checkHunyuan3DAvailability()
-        console.log('Hunyuan3D disponible:', hunyuan3DAvailable.value)
+        falAvailable.value = await checkFalAvailability()
+        console.log('fal.ai disponible:', falAvailable.value)
       } catch (error) {
-        console.error('Error verificando Hunyuan3D:', error)
-        hunyuan3DAvailable.value = false
+        console.error('Error verificando fal.ai:', error)
+        falAvailable.value = false
       }
     })
     
@@ -516,7 +517,7 @@ export default {
       generatedAssets,
       selectedAsset,
       isConverting3D,
-      hunyuan3DAvailable,
+      falAvailable,
       closeModal,
       handleFileUpload,
       handleDrop,

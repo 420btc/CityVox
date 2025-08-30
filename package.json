@@ -25,6 +25,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fal-ai/client": "^1.6.2",
     "@google/genai": "^1.16.0",
     "@gradio/client": "^1.17.1",
     "@vercel/analytics": "^1.5.0",

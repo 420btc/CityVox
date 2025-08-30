@@ -1,3 +1,4 @@
+import BlueHouse from './buildings/bluehouse.js'
 import ChemistryFactory from './buildings/chemistry-factory.js'
 import CustomAsset from './buildings/custom-asset.js'
 import Factory from './buildings/factory.js'
@@ -21,6 +22,7 @@ import WindPower from './buildings/wind_power.js'
 const BUILDING_CLASS_MAP = {
   house: House,
   house2: House2,
+  bluehouse: BlueHouse,
   factory: Factory,
   shop: Shop,
   office: Office,

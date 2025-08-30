@@ -99,6 +99,7 @@ export default class Tile extends SimObject {
       imageUrl: assetData.imageUrl,
       processedImage: assetData.processedImage,
       glbUrl: assetData.glbUrl,
+      glbBlob: assetData.glbBlob,
       is3D: assetData.is3D || false,
       prompt: assetData.prompt,
       position: { x: this.x, y: this.y }

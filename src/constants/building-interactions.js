@@ -230,6 +230,41 @@ export const BUILDING_INTERACTIONS = {
     ],
   },
 
+  bluehouse: {
+    modifiers: {
+      maxPopulation: [
+        {
+          targets: ['park', 'hero_park'],
+          range: 1,
+          effect: 0.12, // Casa azul tiene un bonus ligeramente mayor con parques
+          description: '公园环境吸引更多居民',
+          stackable: true,
+          maxStacks: 4,
+        },
+        {
+          targets: ['factory', 'chemistry_factory'],
+          range: 1,
+          effect: -0.1, // Menos afectada por fábricas
+          description: '工厂环境减少居民',
+          stackable: true,
+          maxStacks: 4,
+        },
+      ],
+    },
+    statusEffects: [
+      {
+        type: 'ENVIRONMENT_BOOST',
+        condition: { targets: ['park', 'hero_park'], range: 1, inverse: false },
+        effect: { type: 'happy', offsetY: 0.7 },
+      },
+      {
+        type: 'SAD',
+        condition: { targets: ['factory', 'chemistry_factory'], range: 1, inverse: false },
+        effect: { type: 'sad', offsetY: 0.7 },
+      },
+    ],
+  },
+
   // 电力设施的相互作用
   sun_power: {
     modifiers: {

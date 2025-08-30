@@ -329,11 +329,12 @@
     "placeOnMap": "Colocar en Mapa",
     "download": "Descargar",
     "remixSuggestions": "Sugerencias de Remix",
-    "convertTo3D": "Convertir a 3D",
-    "converting": "Convirtiendo...",
-    "downloadGLB": "Descargar GLB",
-    "downloadPNG": "Descargar PNG",
-    "model3DAvailable": "Modelo 3D disponible"
+    "convertTo3D": "Convertir a 3D (fal.ai)",
+      "converting": "Convirtiendo con fal.ai...",
+      "downloadGLB": "Descargar GLB",
+      "downloadPNG": "Descargar PNG",
+      "model3DAvailable": "Modelo 3D disponible",
+      "falaiService": "Servicio fal.ai"
   },
   "defaults": {
     "title": "Título",

@@ -131,11 +131,12 @@
     "placeOnMap": "放置到地图",
     "download": "下载",
     "remixSuggestions": "重新混合建议",
-    "convertTo3D": "转换为3D",
-    "converting": "转换中...",
-    "downloadGLB": "下载GLB",
-    "downloadPNG": "下载PNG",
-    "model3DAvailable": "3D模型可用"
+    "convertTo3D": "转换为3D (fal.ai)",
+      "converting": "使用fal.ai转换中...",
+      "downloadGLB": "下载GLB",
+      "downloadPNG": "下载PNG",
+      "model3DAvailable": "3D模型可用",
+      "falaiService": "fal.ai服务"
   },
   "dialog": {
     "selectTitle": "升级建筑",
